@@ -3,15 +3,15 @@ import { IVideo } from 'src/entities/video';
 import { fetchRelatedVideo } from '../api/fetch-related-video';
 
 interface IState {
-   status: 'pending' | 'fulfilled' | 'rejected' | null;
    videoList: IVideo[];
+   loading: boolean;
    error: string | null;
 }
 
 const initialState: IState = {
-   status: null,
-   error: null,
    videoList: [],
+   loading: false,
+   error: null,
 };
 
 const relatedVideoSlice = createSlice({
@@ -26,15 +26,15 @@ const relatedVideoSlice = createSlice({
       builder
          .addCase(fetchRelatedVideo.pending, (state) => {
             state.error = null;
-            state.status = 'pending';
+            state.loading = true;
          })
          .addCase(fetchRelatedVideo.fulfilled, (state, { payload }) => {
-            state.status = 'fulfilled';
+            state.loading = false;
             state.videoList = payload;
          })
          .addCase(fetchRelatedVideo.rejected, (state, { payload }) => {
-            state.status = 'rejected';
-            state.error = payload!;
+            state.loading = false;
+            if (payload) state.error = payload;
          });
    },
 });

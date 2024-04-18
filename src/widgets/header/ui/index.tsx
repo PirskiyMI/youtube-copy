@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Avatar, Burger, Logo, Path, useAppSelector } from 'src/shared';
+import { Avatar, Logo, Path, useAppSelector } from 'src/shared';
 import { getUser } from 'src/entities/user/model/selectors';
 import { SearchForm } from 'src/features/search-form';
 import { LogIn } from 'src/features/auth/log-in';
@@ -15,7 +15,6 @@ export const TheHeader: FC = () => {
    return (
       <header className={styles.header}>
          <div className={styles.header__label}>
-            <Burger onClick={() => {}} />
             <Link to={Path.HOME_PAGE}>
                <Logo />
             </Link>
