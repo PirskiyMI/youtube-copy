@@ -1,0 +1,9 @@
+.avatar {
+   min-width: 32px;
+   width: 32px;
+   height: 32px;
+   object-position: center;
+   object-fit: cover;
+   border-radius: 100%;
+   background-color: rgba(var(--color-gray), 0.2);
+}

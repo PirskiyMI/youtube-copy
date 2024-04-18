@@ -1,0 +1,15 @@
+.button {
+   width: 30px;
+   height: 30px;
+   position: absolute;
+   top: 50%;
+   right: 2px;
+   transform: translate(0, -50%);
+   border-radius: 100%;
+   transition: background-color ease 0.2s;
+   @media (any-hover: hover) {
+      &:hover {
+         background-color: rgba(var(--color-gray), 0.1);
+      }
+   }
+}

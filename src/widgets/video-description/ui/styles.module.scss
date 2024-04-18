@@ -1,0 +1,29 @@
+.description {
+   margin-top: -6px;
+   flex-direction: column;
+   row-gap: 12px;
+   &,
+   &__main,
+   &__controls,
+   &__control {
+      display: flex;
+   }
+   &__title {
+      font-size: var(--font-s-title-large);
+      font-weight: var(--font-w-bold);
+   }
+   &__main,
+   &__controls {
+      column-gap: 10px;
+   }
+   &__controls {
+      align-items: end;
+   }
+   &__main {
+      justify-content: space-between;
+   }
+   &__control {
+      column-gap: 4px;
+      align-items: center;
+   }
+}

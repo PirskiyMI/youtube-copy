@@ -1,0 +1,13 @@
+.form {
+   padding-bottom: 10px;
+   display: flex;
+   flex-direction: column;
+   row-gap: 16px;
+   &__field {
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(var(--color-dark), 0.4);
+   }
+   &__button {
+      align-self: end;
+   }
+}

@@ -1,0 +1,23 @@
+.header {
+   width: 100%;
+   padding: 4px 16px;
+   position: fixed;
+   top: 0;
+   left: 0;
+   display: flex;
+   justify-content: space-between;
+   background-color: rgb(var(--color-light));
+   z-index: 10;
+   &,
+   &__label,
+   &__user {
+      display: flex;
+   }
+   &__label,
+   &__user {
+      align-items: center;
+   }
+   &__user {
+      column-gap: 10px;
+   }
+}

@@ -1,0 +1,9 @@
+.button {
+   color: rgb(var(--color-dark));
+   background-color: rgba(var(--color-dark), 0.1);
+   @media (any-hover: hover) {
+      &:hover {
+         background-color: rgba(var(--color-dark), 0.2);
+      }
+   }
+}

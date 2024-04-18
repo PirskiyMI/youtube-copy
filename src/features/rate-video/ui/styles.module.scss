@@ -1,0 +1,30 @@
+.rate {
+   height: 36px;
+   display: flex;
+   border-radius: 12px;
+   overflow: hidden;
+   &__button {
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      column-gap: 6px;
+      background-color: rgba(var(--color-gray), 0.1);
+      transition: background-color ease 0.2s;
+      &:first-child {
+         border-right: 1px solid rgba(var(--color-gray), 0.4);
+      }
+      @media (any-hover: hover) {
+         &:hover {
+            background-color: rgba(var(--color-gray), $alpha: 0.2);
+         }
+      }
+   }
+   &__icon {
+      width: 24px;
+      height: 24px;
+      transition: fill ease 0.2s;
+      &_active {
+         fill: #000000;
+      }
+   }
+}

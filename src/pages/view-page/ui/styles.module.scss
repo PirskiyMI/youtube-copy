@@ -1,0 +1,13 @@
+.page {
+   max-width: calc((100vh ) * (16 / 9));
+   min-width: calc(360px * (16 / 9));
+   margin: 0 auto;
+   display: grid;
+   grid-template-columns: 3fr 1fr;
+   column-gap: 24px;
+   &__main {
+      display: flex;
+      flex-direction: column;
+      row-gap: 16px;
+   }
+}

@@ -1,0 +1,14 @@
+@import './variables.scss';
+@import './normalize.scss';
+
+body {
+   min-width: 100vw;
+   font-family: var(--font-family);
+   font-size: var(--font-s-text-default);
+   font-weight: var(--font-w-default);
+   line-height: var(--line-h-default);
+}
+
+#root {
+   width: 100%;
+}

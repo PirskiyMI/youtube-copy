@@ -1,0 +1,19 @@
+.button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 64px;
+   height: 100%;
+   border: 1px solid rgba(var(--color-gray), 0.4);
+   border-radius: 0 20px 20px 0;
+   transition: background-color ease 0.2s;
+   &__icon {
+      width: 16px;
+      height: 16px;
+   }
+   @media (any-hover: hover) {
+      &:hover {
+         background-color: rgba(var(--color-gray), 0.1);
+      }
+   }
+}

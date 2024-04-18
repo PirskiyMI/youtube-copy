@@ -1,0 +1,27 @@
+.info {
+   padding: 12px;
+   display: flex;
+   flex-direction: column;
+   align-items: start;
+   row-gap: 8px;
+   background-color: rgba(var(--color-dark), 0.05);
+   border-radius: 12px;
+   cursor: pointer;
+   &_active {
+      cursor: auto;
+   }
+   &__statistics,
+   &__button {
+      font-weight: var(--font-w-bold);
+   }
+   &__content {
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      &_active {
+         -webkit-box-orient: horizontal;
+      }
+   }
+}

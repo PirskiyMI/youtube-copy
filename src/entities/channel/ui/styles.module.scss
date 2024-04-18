@@ -1,0 +1,11 @@
+.channel {
+   display: flex;
+   column-gap: 10px;
+   &__title {
+      font-size: var(--font-s-title-default);
+      font-weight: var(--font-w-bold);
+   }
+   &__count {
+      font-size: 12px;
+   }
+}

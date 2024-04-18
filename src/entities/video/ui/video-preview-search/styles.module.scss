@@ -1,0 +1,43 @@
+.clip {
+   display: flex;
+   column-gap: 16px;
+   &__image {
+      flex: 0 1 40%;
+      max-height: 280px;
+      position: relative;
+      img {
+         width: 100%;
+         height: 100%;
+         border-radius: 4px;
+      }
+   }
+   &__description {
+      flex: 0 0 50%;
+   }
+   &__duration {
+      padding: 4px;
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      transform: translate(-40%, -25%);
+      color: rgb(var(--color-light));
+      background-color: rgba(var(--color-dark), 0.8);
+   }
+   &__channel {
+      margin: 12px 0;
+      display: flex;
+      align-items: center;
+      column-gap: 8px;
+      font-size: 12px;
+   }
+   &__title {
+      font-size: var(--font-s-title-large);
+   }
+   &__date:before {
+      content: '•';
+      margin: 0 4px;
+   }
+   &__text {
+      font-size: 12px;
+   }
+}

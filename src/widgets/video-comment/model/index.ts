@@ -1,0 +1,1 @@
+export { videoCommentReducer } from './reducers';

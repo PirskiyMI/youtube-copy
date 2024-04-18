@@ -1,0 +1,1 @@
+export { relatedVideoReducer } from './reducer';
