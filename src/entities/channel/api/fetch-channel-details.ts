@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { request } from 'src/shared';
+import { request } from 'src/shared/api';
+
 import { ChannelResponse } from '../types';
 
 export const fetchChannelDetails = createAsyncThunk<

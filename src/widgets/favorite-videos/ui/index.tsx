@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 
-import { useAppDispatch, useAppSelector } from 'src/shared';
+import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
 import { VideoPreview, VideoPreviewSkeleton, isVideoIdString } from 'src/entities/video';
 
 import {

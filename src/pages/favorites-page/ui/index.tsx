@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { useAppSelector } from 'src/shared';
+import { useAppSelector } from 'src/shared/lib/hooks';
 import { getIsAuth } from 'src/entities/user';
 import { LogIn } from 'src/features/auth/log-in';
 import { FavoriteVideoList } from 'src/widgets/favorite-videos';

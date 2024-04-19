@@ -1,7 +1,7 @@
 import { FC, ReactNode, lazy } from 'react';
 
 import { usePopup } from 'src/shared/lib/hooks';
-import { Button } from 'src/shared/ui/button';
+import { LikeCounter } from 'src/shared/ui/like-counter';
 
 const Popup = lazy(async () => {
    const { Popup } = await import('src/shared/ui/popup');
@@ -11,18 +11,24 @@ const Popup = lazy(async () => {
 import styles from './styles.module.scss';
 
 interface Props {
+   likeCount: string;
    authButton: ReactNode;
 }
 
-export const AddSubscribeUnauthorized: FC<Props> = ({ authButton }) => {
+export const RateVideoUnauthorized: FC<Props> = ({ likeCount, authButton }) => {
    const { isPopupVisible, showPopup, hidePopup } = usePopup();
 
    return (
-      <div className={styles.button}>
-         <Button onClick={showPopup}>Подписаться</Button>
+      <div className={styles.counter}>
+         <LikeCounter
+            likeCount={likeCount}
+            rate="none"
+            onLikeClick={showPopup}
+            onDislikeClick={showPopup}
+         />
          {isPopupVisible && (
             <Popup
-               title="Хотите подписаться на этот канал?"
+               title="Хотите оценить это видео?"
                text="Тогда войдите в аккаунт."
                hidePopup={hidePopup}
                button={authButton}

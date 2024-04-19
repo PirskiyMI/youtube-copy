@@ -1,6 +1,8 @@
 import { MouseEvent, FC, useState } from 'react';
+
+import { getFromNow, getCount } from 'src/shared/lib/helpers';
+
 import styles from './styles.module.scss';
-import { getFromNow, getCount } from 'src/shared';
 
 interface IProps {
    publishedAt: string;

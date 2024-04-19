@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { IVideo } from 'src/entities/video';
+
 import { fetchFavoriteVideo } from '../api/fetch-favorite-video';
 
 interface Data {

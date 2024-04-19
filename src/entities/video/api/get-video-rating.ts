@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { request } from 'src/shared';
+
+import { request } from 'src/shared/api';
 
 interface Request {
    kind: string;
@@ -17,7 +18,7 @@ export const getVideoRating = createAsyncThunk<
    string,
    { rejectValue: string; state: RootState }
 >('video/getVideoRating', async (videoId, { rejectWithValue, getState }) => {
-   const accessToken = getState().userReducer.accessToken;
+   const accessToken = getState().user.accessToken;
    try {
       return await request
          .get<Request>('/videos/getRating', {

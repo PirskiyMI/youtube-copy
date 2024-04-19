@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-import { ScrollToTop } from 'src/shared';
+import { ScrollToTop } from 'src/shared/ui/scroll-to-top';
 import { TheHeader } from 'src/widgets/header';
 import { TheSidebar } from 'src/widgets/sidebar';
 

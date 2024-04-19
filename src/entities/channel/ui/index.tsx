@@ -1,6 +1,8 @@
 import { FC, useEffect } from 'react';
 
-import { Avatar, getNoun, getCount, useAppSelector, useAppDispatch } from 'src/shared';
+import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
+import { getCount, getNoun } from 'src/shared/lib/helpers';
+import { Avatar } from 'src/shared/ui/avatar';
 
 import styles from './styles.module.scss';
 import { getChannelData } from '../model/selectors';

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { request } from 'src/shared';
+import { request } from 'src/shared/api';
 
 export const setVideoRating2 = async ({
    videoId,
@@ -23,7 +23,7 @@ export const setVideoRating = createAsyncThunk<
    { videoId: string; rate: 'like' | 'dislike' | 'none' },
    { rejectValue: string; state: RootState }
 >('video/addLikeVideo', async ({ videoId, rate }, { rejectWithValue, getState }) => {
-   const accessToken = getState().userReducer.accessToken;
+   const accessToken = getState().user.accessToken;
    try {
       await request.post('/videos/rate', undefined, {
          params: { id: videoId, rating: rate },

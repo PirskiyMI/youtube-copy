@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { IComment, fetchComment } from 'src/entities/comment';
-import { addComment } from 'src/features/send-comment/api/add-comment';
+import { addComment } from 'src/features/send-comment';
 
 interface IState {
    status: 'pending' | 'fulfilled' | 'rejected' | null;

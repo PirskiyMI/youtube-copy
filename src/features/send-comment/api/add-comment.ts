@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { request } from 'src/shared';
+
+import { request } from 'src/shared/api';
 import { IComment } from 'src/entities/comment';
 
 interface FulfilledResponse {
@@ -15,7 +16,7 @@ export const addComment = createAsyncThunk<
    FetchArguments,
    { rejectValue: string; state: RootState }
 >('comment/addComment', async ({ videoId, text }, { rejectWithValue, getState }) => {
-   const accessToken = getState().userReducer.accessToken;
+   const accessToken = getState().user.accessToken;
    try {
       const params = {
          snippet: {

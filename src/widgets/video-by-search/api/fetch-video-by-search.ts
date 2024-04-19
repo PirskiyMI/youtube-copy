@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import { request } from 'src/shared/api';
 import { IVideo, VideoResponse } from 'src/entities/video';
-import { request } from 'src/shared';
 
 export const fetchVideoBySearch = createAsyncThunk<IVideo[], string, { rejectValue: string }>(
    'videosBySearch/fetchVideoBySearch',

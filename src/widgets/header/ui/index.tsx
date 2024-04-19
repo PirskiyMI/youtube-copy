@@ -1,7 +1,10 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Avatar, Logo, Path, useAppSelector } from 'src/shared';
+import { useAppSelector } from 'src/shared/lib/hooks';
+import { Path } from 'src/shared/constants';
+import { Logo } from 'src/shared/ui/logo';
+import { Avatar } from 'src/shared/ui/avatar';
 import { getUser } from 'src/entities/user/model/selectors';
 import { SearchForm } from 'src/features/search-form';
 import { LogIn } from 'src/features/auth/log-in';

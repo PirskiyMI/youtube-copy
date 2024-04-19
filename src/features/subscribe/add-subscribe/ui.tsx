@@ -1,6 +1,8 @@
 import { FC } from 'react';
+
+import { useAppDispatch } from 'src/shared/lib/hooks';
+import { Button } from 'src/shared/ui/button';
 import { createSubscription, fetchSubscriptionStatus } from 'src/entities/channel';
-import { Button, useAppDispatch } from 'src/shared';
 
 interface Props {
    channelId: string;

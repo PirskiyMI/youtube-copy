@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
+import styles from './styles.module.scss';
 import { IVideo, isVideoIdString } from '../..';
 import { useFetchVideoDetails } from '../../lib/hooks/use-fetch-video-details';
 import { useVideoDetails } from '../../lib/hooks/use-video-details';
-import styles from './styles.module.scss';
 import { VideoPreviewShortSkeleton } from './skeleton';
 
 export const VideoPreviewShort: FC<IVideo> = ({

@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import { request } from 'src/shared/api';
+
 import { IComment } from '..';
-import { request } from 'src/shared';
 import { CommentResponse } from '../lib/types';
 
 interface FetchFulfilled {

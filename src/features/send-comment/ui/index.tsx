@@ -1,5 +1,8 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import { Button, useAppDispatch } from 'src/shared';
+
+import { useAppDispatch } from 'src/shared/lib/hooks';
+import { Button } from 'src/shared/ui/button';
+
 import styles from './styles.module.scss';
 import { addComment } from '../api/add-comment';
 

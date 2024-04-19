@@ -1,5 +1,6 @@
+import { Localized, Thumbnails } from 'src/shared/lib/types';
+
 import { IStatistics } from './video-statistics';
-import { Localized, Thumbnails } from 'src/shared';
 
 interface Snippet {
    publishedAt: string;

@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
-import { Button, useAppDispatch } from 'src/shared';
+import { useAppDispatch } from 'src/shared/lib/hooks';
+import { Button } from 'src/shared/ui/button';
 import { channelActions, deleteSubscription } from 'src/entities/channel';
 
 import styles from './styles.module.scss';

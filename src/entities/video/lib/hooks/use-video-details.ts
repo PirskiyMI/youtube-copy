@@ -1,6 +1,6 @@
 import moment from 'moment';
-import { getFromNow, getCount } from 'src/shared';
-import { getNoun } from 'src/shared/lib/helpers/get-noun';
+
+import { getFromNow, getCount, getNoun } from 'src/shared/lib/helpers';
 
 interface IProps {
    details: { viewCount: string; duration: string; publishedAt: string } | undefined;

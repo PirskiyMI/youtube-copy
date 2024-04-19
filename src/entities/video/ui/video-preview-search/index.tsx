@@ -1,12 +1,13 @@
 import { FC } from 'react';
 
+import { Avatar } from 'src/shared/ui/avatar';
+
 import { IVideo } from '../../lib/types';
 import { useFetchVideoDetails } from '../../lib/hooks/use-fetch-video-details';
 import { isVideoIdString } from '../../lib/helpers';
 import { useVideoDetails } from '../../lib/hooks/use-video-details';
 
 import styles from './styles.module.scss';
-import { Avatar } from 'src/shared';
 
 export const VideoPreviewSearch: FC<IVideo> = ({
    id,

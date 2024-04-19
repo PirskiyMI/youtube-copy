@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { IVideo } from 'src/entities/video';
 import { fetchPopularVideo } from 'src/widgets/popular-video/api/fetch-popular-video';
 

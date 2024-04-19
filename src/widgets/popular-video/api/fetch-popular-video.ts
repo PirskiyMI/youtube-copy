@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { request } from 'src/shared';
+import { request } from 'src/shared/api';
 import { IVideo, VideoResponse } from 'src/entities/video';
 
 interface FulfilledResponse {

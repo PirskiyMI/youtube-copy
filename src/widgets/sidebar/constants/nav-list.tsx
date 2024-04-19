@@ -1,4 +1,4 @@
-import { Path } from 'src/shared';
+import { Path } from 'src/shared/constants';
 
 import HomeIcon from './../assets/home-icon.svg?react';
 import LikeIcon from './../assets/like-icon.svg?react';

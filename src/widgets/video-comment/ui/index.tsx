@@ -1,13 +1,14 @@
 import { FC, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
+import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
 import { Comment, fetchComment } from 'src/entities/comment';
-import { useAppDispatch, useAppSelector } from 'src/shared';
+import { CommentForm } from 'src/features/send-comment';
+
 import { getVideoCommentSelector } from '../model/selectors';
 import { videoCommentActions } from '../model/reducers';
 
 import styles from './styles.module.scss';
-import { CommentForm } from 'src/features/send-comment/ui';
 
 interface IProps {
    videoId: string;

@@ -1,12 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { request } from 'src/shared';
+import { request } from 'src/shared/api';
 
 export const createSubscription = createAsyncThunk<
    void,
    string,
    { rejectValue: string; state: RootState }
 >('channel/createSubscription', async (channelId, { rejectWithValue, getState }) => {
-   const accessToken = getState().userReducer.accessToken;
+   const accessToken = getState().user.accessToken;
    const params = { snippet: { resourceId: { kind: 'youtube#channel', channelId } } };
 
    try {

@@ -1,9 +1,11 @@
 import { FC, Suspense, lazy, useEffect, useState } from 'react';
 
-import { getCount, useAppDispatch, useAppSelector } from 'src/shared';
+import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
 import { getVideoRating, getVideoRatingSelector } from 'src/entities/video';
 import { Channel, fetchSubscriptionStatus, getSubscriptionStatus } from 'src/entities/channel';
 import { VideoInfo } from 'src/entities/video-info';
+import { getIsAuth } from 'src/entities/user';
+import { LogIn } from 'src/features/auth/log-in';
 
 const RemoveSubscribe = lazy(async () => {
    const { RemoveSubscribe } = await import('src/features/subscribe/remove-subscribe');
@@ -19,12 +21,17 @@ const AddSubscribeUnauthorized = lazy(async () => {
    );
    return { default: AddSubscribeUnauthorized };
 });
+const RateVideo = lazy(async () => {
+   const { RateVideo } = await import('src/features/rate-video');
+   return { default: RateVideo };
+});
+const RateVideoUnauthorized = lazy(async () => {
+   const { RateVideoUnauthorized } = await import('src/features/rate-video-unauthorized');
+   return { default: RateVideoUnauthorized };
+});
 
 import styles from './styles.module.scss';
 import { getVideoInfo } from '../api/get-video-info';
-import { RateVideo } from 'src/features/rate-video';
-import { getIsAuth } from 'src/entities/user';
-import { LogIn } from 'src/features/auth/log-in';
 
 interface IProps {
    id: string;
@@ -66,8 +73,6 @@ export const VideoDescription: FC<IProps> = ({ id }) => {
 
    if (!statistics || !snippet) return null;
 
-   const likeCount = getCount(statistics.likeCount);
-
    return (
       <div className={styles.description}>
          <div className={styles.description__header}>
@@ -76,8 +81,16 @@ export const VideoDescription: FC<IProps> = ({ id }) => {
          <div className={styles.description__main}>
             {snippet.channelId && <Channel channelId={snippet.channelId} />}
             <div className={styles.description__controls}>
-               <RateVideo videoId={id} likeCount={likeCount} rate={videoRating} />
-
+               <Suspense>
+                  {isAuth ? (
+                     <RateVideo videoId={id} likeCount={statistics.likeCount} rate={videoRating} />
+                  ) : (
+                     <RateVideoUnauthorized
+                        likeCount={statistics.likeCount}
+                        authButton={<LogIn />}
+                     />
+                  )}
+               </Suspense>
                <Suspense>
                   {isAuth ? (
                      subscribeStatus ? (

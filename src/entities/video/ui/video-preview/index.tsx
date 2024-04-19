@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Avatar } from 'src/shared';
+import { Avatar } from 'src/shared/ui/avatar';
 
 import { IVideo, isVideoIdString } from '../..';
 import { useFetchVideoDetails } from '../../lib/hooks/use-fetch-video-details';

@@ -1,11 +1,25 @@
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { Path } from 'src/shared';
+import { Path } from 'src/shared/constants';
 import { Layout } from 'src/pages/layout';
-import { HomePage } from 'src/pages/home-page';
-import { SearchPage } from 'src/pages/search-page';
-import { ViewPage } from 'src/pages/view-page';
-import { FavoritesPage } from 'src/pages/favorites-page';
+
+const HomePage = lazy(async () => {
+   const { HomePage } = await import('src/pages/home-page');
+   return { default: HomePage };
+});
+const SearchPage = lazy(async () => {
+   const { SearchPage } = await import('src/pages/search-page');
+   return { default: SearchPage };
+});
+const ViewPage = lazy(async () => {
+   const { ViewPage } = await import('src/pages/view-page');
+   return { default: ViewPage };
+});
+const FavoritesPage = lazy(async () => {
+   const { FavoritesPage } = await import('src/pages/favorites-page');
+   return { default: FavoritesPage };
+});
 
 export const Routing = () => {
    return (

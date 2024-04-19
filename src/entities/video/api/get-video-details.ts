@@ -1,4 +1,4 @@
-import { request } from 'src/shared';
+import { request } from 'src/shared/api';
 import { VideoResponse } from '../lib/types/response-type';
 
 export const getVideoDetails = async (id: string) => {

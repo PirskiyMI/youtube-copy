@@ -1,4 +1,4 @@
-import { request } from 'src/shared';
+import { request } from 'src/shared/api';
 import { VideoResponse } from 'src/entities/video';
 
 export const getVideoInfo = async (id: string) => {

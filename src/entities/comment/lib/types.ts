@@ -1,4 +1,4 @@
-import { Response } from 'src/shared';
+import { Response } from 'src/shared/lib/types';
 
 export interface CommentResponse extends Response {
    nextPageToken: string;

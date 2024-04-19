@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { IVideo } from 'src/entities/video';
+
 import { fetchRelatedVideo } from '../api/fetch-related-video';
 
 interface IState {

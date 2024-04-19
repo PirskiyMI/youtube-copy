@@ -1,7 +1,7 @@
 .rate {
    height: 36px;
    display: flex;
-   border-radius: 12px;
+   border-radius: var(--radius-default);
    overflow: hidden;
    &__button {
       padding: 6px;

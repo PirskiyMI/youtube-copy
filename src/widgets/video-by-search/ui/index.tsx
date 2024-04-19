@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from 'src/shared';
+import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
 import { VideoPreviewSearch, isVideoIdString } from 'src/entities/video';
 
 import styles from './styles.module.scss';

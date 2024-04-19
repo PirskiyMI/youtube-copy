@@ -1,6 +1,8 @@
 import { FC, ReactNode, useState } from 'react';
 
-import { Avatar, getFromNow, getNoun, useShowMore } from 'src/shared';
+import { useShowMore } from 'src/shared/lib/hooks';
+import { getFromNow, getNoun } from 'src/shared/lib/helpers';
+import { Avatar } from 'src/shared/ui/avatar';
 
 import styles from './styles.module.scss';
 import { IComment } from '..';

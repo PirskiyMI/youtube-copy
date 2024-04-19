@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import moment from 'moment';
 
-import { Avatar, useShowMore } from 'src/shared';
+import { useShowMore } from 'src/shared/lib/hooks';
+import { Avatar } from 'src/shared/ui/avatar';
 
 import { IReplyComment } from '../lib/types';
 import styles from './styles.module.scss';

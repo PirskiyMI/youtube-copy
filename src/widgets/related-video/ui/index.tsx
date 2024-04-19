@@ -1,7 +1,7 @@
 import { memo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useAppSelector, useAppDispatch } from 'src/shared';
+import { useAppSelector, useAppDispatch } from 'src/shared/lib/hooks';
 import { VideoPreviewShort, isVideoIdString } from 'src/entities/video';
 
 import styles from './styles.module.scss';
@@ -11,7 +11,7 @@ import { fetchRelatedVideo } from '../api/fetch-related-video';
 
 export const RelatedVideoList = memo(({ videoId }: { videoId: string }) => {
    const { clearVideoList } = relatedVideoActions;
-   const { videoList, status } = useAppSelector(getRelatedVideoDataSelector);
+   const { videoList, loading } = useAppSelector(getRelatedVideoDataSelector);
    const dispatch = useAppDispatch();
 
    useEffect(() => {
@@ -21,7 +21,7 @@ export const RelatedVideoList = memo(({ videoId }: { videoId: string }) => {
       };
    }, []);
 
-   if (status === 'pending') {
+   if (loading) {
       return <div>...Loading</div>;
    }
 

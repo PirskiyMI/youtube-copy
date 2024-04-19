@@ -1,5 +1,6 @@
-import { Auth } from 'src/entities/user/api/auth';
-import { Button, useAppDispatch } from 'src/shared';
+import { useAppDispatch } from 'src/shared/lib/hooks';
+import { Button } from 'src/shared/ui/button';
+import { Auth } from 'src/entities/user';
 
 export const LogIn = () => {
    const dispatch = useAppDispatch();

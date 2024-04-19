@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { IVideo } from 'src/entities/video';
+
 import { fetchVideoBySearch } from '../api/fetch-video-by-search';
 
 interface State {
