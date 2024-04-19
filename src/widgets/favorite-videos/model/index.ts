@@ -1,0 +1,1 @@
+export { favoriteVideosReducer } from './reducers';

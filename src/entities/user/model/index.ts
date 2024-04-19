@@ -1,2 +1,2 @@
-export { getUserAccessToken } from './selectors';
+export { getUserAccessToken, getIsAuth } from './selectors';
 export { userReducer, userActions } from './reducers';

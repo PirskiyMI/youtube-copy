@@ -6,12 +6,14 @@ import { relatedVideoReducer } from 'src/widgets/related-video';
 import { videoCommentReducer } from 'src/widgets/video-comment';
 import { videoReducer } from 'src/entities/video';
 import { videosBySearchReducer } from 'src/widgets/video-by-search';
+import { favoriteVideosReducer } from 'src/widgets/favorite-videos';
 
 export const rootReducer = combineReducers({
    user: userReducer,
    channel: channelReducer,
    relatedVideo: relatedVideoReducer,
    popularVideo: popularVideoReducer,
+   favoriteVideos: favoriteVideosReducer,
    videoBySearch: videosBySearchReducer,
    videoComment: videoCommentReducer,
    videoRating: videoReducer,

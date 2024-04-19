@@ -3,4 +3,5 @@ export const enum Path {
    VIEW_PAGE = '/watch/:id',
    LOGIN_PAGE = '/login',
    SEARCH_PAGE = '/search/:searchValue',
+   FAVORITES_PAGE = '/favorites',
 }
