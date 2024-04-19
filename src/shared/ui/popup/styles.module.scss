@@ -1,0 +1,26 @@
+.popup {
+   &__backdrop {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+   }
+   &__body {
+      position: absolute;
+      min-width: 300px;
+      top: -100%;
+      left: 0;
+      padding: 16px;
+      background-color: rgb(var(--color-light));
+      box-shadow: 0 0 14px rgba(var(--color-gray), 0.4);
+   }
+   &__text {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+   }
+   &__button {
+      margin-top: 30px;
+   }
+}
