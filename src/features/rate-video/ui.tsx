@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { useAppDispatch } from 'src/shared/lib/hooks';
-import { setVideoRating } from 'src/entities/video';
+import { setVideoRating } from 'src/entities/video/video-rating';
 
 import { LikeCounter } from 'src/shared/ui/like-counter';
 

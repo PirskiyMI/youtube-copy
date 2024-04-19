@@ -1,20 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getVideoRating, setVideoRating } from '../api';
+import { getVideoRating, setVideoRating } from './thunks';
 
-interface VideoState {
+interface State {
    rating: 'like' | 'dislike' | 'none' | 'unspecified';
    loading: boolean;
    error: string | null;
 }
 
-const initialState: VideoState = {
+const initialState: State = {
    rating: 'none',
    loading: false,
    error: null,
 };
 
-const videoSlice = createSlice({
-   name: 'video',
+const videoRatingSlice = createSlice({
+   name: 'videoRating',
    initialState,
    reducers: {},
    extraReducers: (builder) => {
@@ -46,4 +46,4 @@ const videoSlice = createSlice({
    },
 });
 
-export const videoReducer = videoSlice.reducer;
+export const videoRatingReducer = videoRatingSlice.reducer;

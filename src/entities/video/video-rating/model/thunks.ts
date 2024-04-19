@@ -1,8 +1,24 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
 import { request } from 'src/shared/api';
 
-interface Request {
+export const setVideoRating = createAsyncThunk<
+   'like' | 'dislike' | 'none',
+   { videoId: string; rate: 'like' | 'dislike' | 'none' },
+   { rejectValue: string; state: RootState }
+>('video/addLikeVideo', async ({ videoId, rate }, { rejectWithValue, getState }) => {
+   const accessToken = getState().user.accessToken;
+   try {
+      await request.post('/videos/rate', undefined, {
+         params: { id: videoId, rating: rate },
+         headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      return rate;
+   } catch (error) {
+      return rejectWithValue(`${error}`);
+   }
+});
+
+interface VideoRatingRequest {
    kind: string;
    etag: string;
    items: [
@@ -21,7 +37,7 @@ export const getVideoRating = createAsyncThunk<
    const accessToken = getState().user.accessToken;
    try {
       return await request
-         .get<Request>('/videos/getRating', {
+         .get<VideoRatingRequest>('/videos/getRating', {
             params: { id: videoId },
             headers: { Authorization: `Bearer ${accessToken}` },
          })

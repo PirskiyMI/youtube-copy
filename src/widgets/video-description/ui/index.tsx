@@ -1,7 +1,7 @@
 import { FC, Suspense, lazy, useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
-import { getVideoRating, getVideoRatingSelector } from 'src/entities/video';
+import { getVideoRating, getVideoRatingSelector } from 'src/entities/video/video-rating';
 import { Channel, fetchSubscriptionStatus, getSubscriptionStatus } from 'src/entities/channel';
 import { VideoInfo } from 'src/entities/video-info';
 import { getIsAuth } from 'src/entities/user';
