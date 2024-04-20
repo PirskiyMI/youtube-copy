@@ -9,7 +9,7 @@ interface IProps {
 
 export const ClearFormButton: FC<IProps> = memo(({ onClick }) => {
    return (
-      <button className={styles.button} onClick={onClick}>
+      <button type='reset' className={styles.button} onClick={onClick}>
          <CrossIcon />
       </button>
    );

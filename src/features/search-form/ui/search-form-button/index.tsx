@@ -5,7 +5,7 @@ import styles from './styles.module.scss';
 
 export const SearchFormButton: FC = memo(() => {
    return (
-      <button className={styles.button} aria-label="Введите запрос">
+      <button type="submit" className={styles.button} aria-label="Введите запрос">
          <SearchIcon className={styles.button__icon} />
       </button>
    );
