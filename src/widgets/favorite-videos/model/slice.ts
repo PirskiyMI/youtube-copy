@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { VideoPreviewProps } from 'src/entities/video/video-preview';
+import { VideoPreviewDetails } from 'src/entities/video/video-preview';
 
 import { fetchFavoriteVideo } from './thunks';
 
-export interface VideoListItem extends VideoPreviewProps {
+export interface VideoListItem extends VideoPreviewDetails {
    id: string;
 }
 

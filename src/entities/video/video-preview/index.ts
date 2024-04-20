@@ -1,2 +1,2 @@
 export * from './ui';
-export * from './types';
+export type { VideoPreviewDetails } from './types';
