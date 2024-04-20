@@ -8,16 +8,4 @@
    justify-content: space-between;
    background-color: rgb(var(--color-light));
    z-index: 10;
-   &,
-   &__label,
-   &__user {
-      display: flex;
-   }
-   &__label,
-   &__user {
-      align-items: center;
-   }
-   &__user {
-      column-gap: 10px;
-   }
 }

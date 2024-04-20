@@ -7,6 +7,7 @@ body {
    font-size: var(--font-s-text-default);
    font-weight: var(--font-w-default);
    line-height: var(--line-h-default);
+   overflow-x: hidden;
 }
 
 #root {

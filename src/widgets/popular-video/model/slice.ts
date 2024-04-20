@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { VideoPreviewProps } from 'src/entities/video/video-preview';
+import { VideoPreviewDetails } from 'src/entities/video/video-preview';
 import { fetchPopularVideo } from 'src/widgets/popular-video/model/thunks';
 
-export interface VideoListItem extends VideoPreviewProps {
+export interface VideoListItem extends VideoPreviewDetails {
    id: string;
 }
 
@@ -17,16 +17,16 @@ interface IState {
 }
 
 const initialState: IState = {
-   loading: false,
-   error: null,
    data: {
       videoList: [],
       nextPageToken: '',
    },
+   loading: false,
+   error: null,
 };
 
 const popularVideoSlice = createSlice({
-   name: 'popular-video',
+   name: 'popularVideo',
    initialState,
    reducers: {
       clearVideoList: (state) => {
@@ -49,7 +49,7 @@ const popularVideoSlice = createSlice({
          )
          .addCase(fetchPopularVideo.rejected, (state, { payload }) => {
             state.loading = false;
-            state.error = payload!;
+            if (payload) state.error = payload;
          });
    },
 });

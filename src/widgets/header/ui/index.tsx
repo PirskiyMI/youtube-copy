@@ -8,7 +8,6 @@ import { Avatar } from 'src/shared/ui/avatar';
 import { getUser } from 'src/entities/user/model/selectors';
 import { SearchForm } from 'src/features/search-form';
 import { LogIn } from 'src/features/auth/log-in';
-import { LogOut } from 'src/features/auth/log-out';
 
 import styles from './styles.module.scss';
 
@@ -17,21 +16,11 @@ export const TheHeader: FC = () => {
 
    return (
       <header className={styles.header}>
-         <div className={styles.header__label}>
-            <Link to={Path.HOME_PAGE}>
-               <Logo />
-            </Link>
-         </div>
+         <Link to={Path.HOME_PAGE}>
+            <Logo />
+         </Link>
          <SearchForm />
-
-         {user ? (
-            <div className={styles.header__user}>
-               <Avatar image={user?.imgURL} />
-               <LogOut />
-            </div>
-         ) : (
-            <LogIn />
-         )}
+         {user ? <Avatar image={user?.imgURL} /> : <LogIn />}
       </header>
    );
 };

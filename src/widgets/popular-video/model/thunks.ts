@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { request } from 'src/shared/api';
-import { VideoWithDetailsResponse, formatVideoDetails } from 'src/entities/video/video-details';
+import { VideoWithDetailsResponse } from 'src/entities/video/video-details';
 
 import { VideoListItem } from './slice';
 
@@ -36,18 +36,14 @@ export const fetchPopularVideo = createAsyncThunk<
             const { nextPageToken, items } = res.data;
 
             const resVideoList = items.map((el) => {
-               const details = formatVideoDetails({
+               return {
+                  id: el.id,
                   duration: el.contentDetails.duration,
                   viewCount: el.statistics.viewCount,
                   publishedAt: el.snippet.publishedAt,
-               });
-
-               return {
-                  id: el.id,
                   channelTitle: el.snippet.channelTitle,
                   title: el.snippet.title,
                   thumbnail: el.snippet.thumbnails.medium,
-                  ...details,
                };
             });
 
@@ -56,6 +52,6 @@ export const fetchPopularVideo = createAsyncThunk<
 
       return response;
    } catch (error) {
-      return rejectWithValue('Error');
+      return rejectWithValue('Ошибка при запросе популярных видео');
    }
 });
