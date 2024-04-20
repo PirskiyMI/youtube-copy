@@ -1,0 +1,27 @@
+.skeleton {
+   background-color: rgb(230, 230, 230);
+   position: relative;
+   border-radius: 4px;
+   overflow: hidden;
+   &::before {
+      content: '';
+      display: block;
+      width: 10px;
+      height: 200%;
+      position: absolute;
+      top: -10px;
+      left: -100%;
+      background-color: white;
+      filter: blur(6px);
+      animation: transfusion 1.4s infinite linear;
+   }
+}
+
+@keyframes transfusion {
+   0% {
+      left: -100%;
+   }
+   100% {
+      left: 100%;
+   }
+}

@@ -21,7 +21,7 @@ export const FavoritesPage: FC = () => {
                </div>
             </div>
          ) : (
-            <div>
+            <div className={styles.page}>
                <FavoriteVideoList />
             </div>
          )}

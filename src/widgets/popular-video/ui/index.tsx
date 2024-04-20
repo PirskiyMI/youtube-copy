@@ -3,14 +3,17 @@ import { Link } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 
 import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
+import { Preloader } from 'src/shared/ui/preloader';
 import { VideoPreview } from 'src/entities/video/video-preview';
+import { VideoPreviewList } from 'src/entities/video/video-preview-list';
 
 import styles from './styles.module.scss';
-import { getPopularVideoListSelector } from '../model/selectors';
+import { getPopularVideoListSelector, getPopularVideoLoading } from '../model/selectors';
 import { fetchPopularVideo } from '../model/thunks';
 
 export const PopularVideoList = () => {
    const videoList = useAppSelector(getPopularVideoListSelector);
+   const loading = useAppSelector(getPopularVideoLoading);
    const { ref, inView } = useInView();
    const dispatch = useAppDispatch();
 
@@ -26,7 +29,7 @@ export const PopularVideoList = () => {
 
    return (
       <section className={styles.clips}>
-         <ul className={styles.clips__list}>
+         <VideoPreviewList>
             {videoList.map((el, index, array) => (
                <li
                   ref={index === array.length - 1 ? ref : null}
@@ -37,7 +40,12 @@ export const PopularVideoList = () => {
                   </Link>
                </li>
             ))}
-         </ul>
+         </VideoPreviewList>
+         {loading && (
+            <div className={styles.clips__preloader}>
+               <Preloader />
+            </div>
+         )}
       </section>
    );
 };

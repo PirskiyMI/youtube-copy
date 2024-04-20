@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 
+import { Preloader } from 'src/shared/ui/preloader';
 import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
 import { VideoPreview } from 'src/entities/video/video-preview';
-import { VideoPreviewSkeleton } from 'src/entities/video/video-preview/ui/skeleton';
+import { VideoPreviewList } from 'src/entities/video/video-preview-list';
 
 import {
    getFavoriteVideoError,
@@ -41,40 +42,25 @@ export const FavoriteVideoList = () => {
       return <div>Не удается загрузить список понравившихся видео</div>;
    }
    if (!videoList) {
-      return (
-         <div className={styles.clips}>
-            <ul className={styles.clips__list}>
-               {loading &&
-                  [...new Array(4)].map((_, index) => (
-                     <li key={index} className={styles.clips__item}>
-                        <VideoPreviewSkeleton />
-                     </li>
-                  ))}
-            </ul>
-         </div>
-      );
+      return <Preloader />;
    }
 
    return (
       <section className={styles.clips}>
-         <ul className={styles.clips__list}>
+         <VideoPreviewList>
             {videoList.map((el, index, array) => (
-               <li
-                  ref={index === array.length - 1 ? ref : null}
-                  key={el.id}
-                  className={styles.clips__item}>
+               <li ref={index === array.length - 1 ? ref : null} key={el.id}>
                   <Link to={`/watch/${el.id}`}>
                      <VideoPreview {...el} />
                   </Link>
                </li>
             ))}
-            {loading &&
-               [...new Array(4)].map((_, index) => (
-                  <li key={index} className={styles.clips__item}>
-                     <VideoPreviewSkeleton />
-                  </li>
-               ))}
-         </ul>
+         </VideoPreviewList>
+         {loading && (
+            <div className={styles.clips__preloader}>
+               <Preloader />
+            </div>
+         )}
       </section>
    );
 };
