@@ -15,7 +15,7 @@ export const ViewPage: FC = () => {
       <div className={styles.page}>
          <div className={styles.page__main}>
             <VideoPlayer src={`https://www.youtube.com/embed/${id}`} />
-            <VideoDescription id={id!} />
+            <VideoDescription videoId={id!} />
             {/* <VideoComment videoId={id!} /> */}
          </div>
          <div>{/* <RelatedVideoList /> */}</div>
