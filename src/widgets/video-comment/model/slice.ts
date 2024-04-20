@@ -3,22 +3,22 @@ import { createSlice } from '@reduxjs/toolkit';
 import { IComment, fetchComment } from 'src/entities/comment';
 import { addComment } from 'src/features/send-comment';
 
-interface IState {
-   status: 'pending' | 'fulfilled' | 'rejected' | null;
-   error: string | null;
+interface State {
    data: {
       commentList: IComment[];
       nextPageToken: string;
    };
+   loading: boolean;
+   error: string | null;
 }
 
-const initialState: IState = {
-   status: null,
-   error: null,
+const initialState: State = {
    data: {
       commentList: [],
       nextPageToken: '',
    },
+   loading: false,
+   error: null,
 };
 
 const videoCommentSlice = createSlice({
@@ -32,29 +32,29 @@ const videoCommentSlice = createSlice({
    extraReducers: (builder) => {
       builder
          .addCase(fetchComment.pending, (state) => {
-            state.status = 'pending';
+            state.loading = true;
             state.error = null;
          })
          .addCase(fetchComment.fulfilled, (state, { payload: { commentList, nextPageToken } }) => {
-            state.status = 'fulfilled';
+            state.loading = false;
             state.data.commentList = [...state.data.commentList, ...commentList];
             state.data.nextPageToken = nextPageToken;
          })
          .addCase(fetchComment.rejected, (state, { payload }) => {
-            state.status = 'rejected';
-            state.error = payload!;
+            state.loading = false;
+            if (payload) state.error = payload;
          })
          .addCase(addComment.pending, (state) => {
-            state.status = 'pending';
+            state.loading = true;
             state.error = null;
          })
          .addCase(addComment.fulfilled, (state, { payload: { comment } }) => {
-            state.status = 'fulfilled';
+            state.loading = false;
             state.data.commentList = [comment, ...state.data.commentList];
          })
          .addCase(addComment.rejected, (state, { payload }) => {
-            state.status = 'rejected';
-            state.error = payload!;
+            state.loading = false;
+            if (payload) state.error = payload;
          });
    },
 });

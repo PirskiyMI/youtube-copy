@@ -1,0 +1,55 @@
+import { FC, Suspense, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
+
+import { useAppDispatch } from 'src/shared/lib/hooks';
+import { Comment, IComment, fetchComment } from 'src/entities/comment';
+import { CommentForm } from 'src/features/send-comment';
+
+import styles from './styles.module.scss';
+import { Preloader } from 'src/shared/ui/preloader';
+import { CommentFormUnauthorized } from './unauthorized';
+
+interface Props {
+   videoId: string;
+   nextPageToken: string;
+   loading: boolean;
+   isAuth: boolean;
+   commentList: IComment[];
+}
+
+export const VideoCommentList: FC<Props> = ({
+   videoId,
+   nextPageToken,
+   loading,
+   isAuth,
+   commentList,
+}) => {
+   const { ref, inView } = useInView({ threshold: 0.9 });
+   const dispatch = useAppDispatch();
+
+   useEffect(() => {
+      if (inView) {
+         dispatch(fetchComment({ videoId, token: nextPageToken, maxResults: 20 }));
+      }
+   }, [inView]);
+
+   return (
+      <>
+         <Suspense>
+            {isAuth ? <CommentForm videoId={videoId} /> : <CommentFormUnauthorized />}
+         </Suspense>
+         <ul className={styles.list}>
+            {commentList.map((el, index, array) => (
+               <li ref={index === array.length - 1 ? ref : null} key={el.id}>
+                  <Comment {...el} />
+               </li>
+            ))}
+         </ul>
+         {loading && (
+            <div className={styles.preloader}>
+               <Preloader />
+            </div>
+         )}
+      </>
+   );
+};

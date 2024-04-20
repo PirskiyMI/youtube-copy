@@ -1,1 +1,1 @@
-export { videoCommentReducer } from './reducers';
+export { videoCommentReducer } from './slice';
