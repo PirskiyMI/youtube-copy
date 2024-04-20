@@ -1,6 +1,8 @@
-import { FC, Suspense, lazy, useEffect, useState } from 'react';
+import { FC, Suspense, lazy, useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
+import { videoPlayerActions } from 'src/entities/video/video-player';
+import { formatVideoDetails } from 'src/entities/video/video-details';
 import { getVideoRating, getVideoRatingSelector } from 'src/entities/video/video-rating';
 import { Channel, fetchSubscriptionStatus, getSubscriptionStatus } from 'src/entities/channel';
 import { VideoInfo } from 'src/entities/video/video-info';
@@ -31,24 +33,16 @@ const RateVideoUnauthorized = lazy(async () => {
 });
 
 import styles from './styles.module.scss';
-import { getVideoInfo } from '../api/get-video-info';
-import { videoPlayerActions } from 'src/entities/video/video-player';
+
+import { fetchVideoDetails } from '../model/thunks';
+import { getVideoDetailsSelector } from '../model/selectors';
 
 interface IProps {
    id: string;
 }
 
 export const VideoDescription: FC<IProps> = ({ id }) => {
-   const [snippet, setSnippet] = useState<{
-      title: string;
-      description: string;
-      channelId: string;
-      publishedAt: string;
-   }>();
-   const [statistics, setStatistics] = useState<{
-      likeCount: string;
-      viewCount: string;
-   }>();
+   const details = useAppSelector(getVideoDetailsSelector);
    const subscribeStatus = useAppSelector(getSubscriptionStatus);
    const videoRating = useAppSelector(getVideoRatingSelector);
    const isAuth = useAppSelector(getIsAuth);
@@ -56,48 +50,43 @@ export const VideoDescription: FC<IProps> = ({ id }) => {
    const dispatch = useAppDispatch();
 
    useEffect(() => {
-      const fetchVideoInfo = async () => {
-         try {
-            const { snippet, statistics } = await getVideoInfo(id);
-            setSnippet(snippet);
-            setStatistics(statistics);
-         } catch (e) {
-            console.log(e);
-         }
-      };
-      dispatch(getVideoRating(id));
-      fetchVideoInfo();
-   }, [id]);
+      dispatch(fetchVideoDetails(id));
+   }, [dispatch, id]);
 
    useEffect(() => {
-      if (snippet?.channelId) dispatch(fetchSubscriptionStatus(snippet.channelId));
-   }, [snippet?.channelId]);
+      if (isAuth) dispatch(getVideoRating(id));
+   }, [dispatch, id, isAuth]);
 
    useEffect(() => {
-      if (snippet?.title) dispatch(setVideoTitle(snippet?.title));
+      if (details?.channelId && isAuth) dispatch(fetchSubscriptionStatus(details?.channelId));
+   }, [details?.channelId, dispatch, isAuth]);
+
+   useEffect(() => {
+      if (details?.title) dispatch(setVideoTitle(details?.title));
       return () => {
          dispatch(setVideoTitle(''));
       };
-   }, [snippet?.title]);
+   }, [details?.title, dispatch, setVideoTitle]);
 
-   if (!statistics || !snippet) return null;
+   if (!details) {
+      return <></>;
+   }
+
+   const { channelId, title, description, likeCount, viewCount, publishedAt } = details;
 
    return (
       <div className={styles.description}>
          <div className={styles.description__header}>
-            <h3 className={styles.description__title}>{snippet.title}</h3>
+            <h3 className={styles.description__title}>{title}</h3>
          </div>
          <div className={styles.description__main}>
-            {snippet.channelId && <Channel channelId={snippet.channelId} />}
+            {channelId && <Channel channelId={channelId} />}
             <div className={styles.description__controls}>
                <Suspense>
                   {isAuth ? (
-                     <RateVideo videoId={id} likeCount={statistics.likeCount} rate={videoRating} />
+                     <RateVideo videoId={id} likeCount={likeCount} rate={videoRating} />
                   ) : (
-                     <RateVideoUnauthorized
-                        likeCount={statistics.likeCount}
-                        authButton={<LogIn />}
-                     />
+                     <RateVideoUnauthorized likeCount={likeCount} authButton={<LogIn />} />
                   )}
                </Suspense>
                <Suspense>
@@ -105,7 +94,7 @@ export const VideoDescription: FC<IProps> = ({ id }) => {
                      subscribeStatus ? (
                         <RemoveSubscribe subscribeStatus={subscribeStatus} />
                      ) : (
-                        <AddSubscribe channelId={snippet.channelId} />
+                        <AddSubscribe channelId={channelId} />
                      )
                   ) : (
                      <AddSubscribeUnauthorized authButton={<LogIn />} />
@@ -115,9 +104,8 @@ export const VideoDescription: FC<IProps> = ({ id }) => {
          </div>
          <div className={styles.description__footer}>
             <VideoInfo
-               viewCount={statistics.viewCount}
-               publishedAt={snippet.publishedAt}
-               text={snippet.description}
+               description={description}
+               {...formatVideoDetails({ publishedAt, viewCount })}
             />
          </div>
       </div>

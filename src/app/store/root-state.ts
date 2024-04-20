@@ -8,6 +8,7 @@ import { relatedVideoReducer } from 'src/widgets/related-video';
 import { videoCommentReducer } from 'src/widgets/video-comment';
 import { videosBySearchReducer } from 'src/widgets/video-by-search';
 import { favoriteVideosReducer } from 'src/widgets/favorite-videos';
+import { videoDescriptionReducer } from 'src/widgets/video-description';
 import { videoRatingReducer } from 'src/entities/video/video-rating';
 
 export const rootReducer = combineReducers({
@@ -20,6 +21,7 @@ export const rootReducer = combineReducers({
    videoRating: videoRatingReducer,
    videoBySearch: videosBySearchReducer,
    videoComment: videoCommentReducer,
+   videoDescription: videoDescriptionReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

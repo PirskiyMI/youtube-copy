@@ -1,6 +1,5 @@
 import { FC } from 'react';
 
-import { getCount } from '../../lib/helpers';
 import LikeIcon from '../../lib/assets/images/like.svg?react';
 import DislikeIcon from '../../lib/assets/images/dislike.svg?react';
 
@@ -14,8 +13,6 @@ interface Props {
 }
 
 export const LikeCounter: FC<Props> = ({ likeCount, rate, onLikeClick, onDislikeClick }) => {
-   const formattedLikeCount = getCount(likeCount);
-
    return (
       <div className={styles.rate}>
          <button className={styles.rate__button} onClick={onLikeClick}>
@@ -24,7 +21,7 @@ export const LikeCounter: FC<Props> = ({ likeCount, rate, onLikeClick, onDislike
                   styles.rate__icon + (rate === 'like' ? ` ${styles.rate__icon_active}` : '')
                }
             />
-            <span>{formattedLikeCount}</span>
+            <span>{likeCount}</span>
          </button>
          <button className={styles.rate__button} onClick={onDislikeClick}>
             <DislikeIcon

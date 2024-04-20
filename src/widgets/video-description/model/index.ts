@@ -1,0 +1,1 @@
+export { videoDescriptionReducer } from './slice';

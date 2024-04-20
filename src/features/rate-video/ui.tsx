@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
+import { LikeCounter } from 'src/shared/ui/like-counter';
+import { getCount } from 'src/shared/lib/helpers';
 import { useAppDispatch } from 'src/shared/lib/hooks';
 import { setVideoRating } from 'src/entities/video/video-rating';
-
-import { LikeCounter } from 'src/shared/ui/like-counter';
 
 interface Props {
    videoId: string;
@@ -14,6 +14,8 @@ interface Props {
 export const RateVideo: FC<Props> = ({ videoId, likeCount, rate }) => {
    const dispatch = useAppDispatch();
 
+   const formattedLikeCount = getCount(likeCount);
+
    const setLikeVideo = () => dispatch(setVideoRating({ videoId, rate: 'like' }));
    const setDislikeVideo = () => dispatch(setVideoRating({ videoId, rate: 'dislike' }));
    const deleteRateVideo = () => dispatch(setVideoRating({ videoId, rate: 'none' }));
@@ -21,7 +23,7 @@ export const RateVideo: FC<Props> = ({ videoId, likeCount, rate }) => {
    return (
       <LikeCounter
          rate={rate}
-         likeCount={likeCount}
+         likeCount={formattedLikeCount}
          onLikeClick={rate === 'like' ? deleteRateVideo : setLikeVideo}
          onDislikeClick={rate === 'dislike' ? deleteRateVideo : setDislikeVideo}
       />

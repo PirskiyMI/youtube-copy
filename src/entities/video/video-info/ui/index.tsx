@@ -1,20 +1,16 @@
 import { MouseEvent, FC, useState } from 'react';
 
-import { getFromNow, getCount } from 'src/shared/lib/helpers';
-
 import styles from './styles.module.scss';
 
 interface IProps {
    publishedAt: string;
+   description: string;
    viewCount: string;
-   text: string;
+   viewNoun: string;
 }
 
-export const VideoInfo: FC<IProps> = ({ viewCount, publishedAt, text }) => {
+export const VideoInfo: FC<IProps> = ({ viewCount, viewNoun, publishedAt, description }) => {
    const [isOpen, setIsOpen] = useState<boolean>(false);
-
-   const formattedPublishedAt = getFromNow(publishedAt);
-   const formattedViewCount = getCount(viewCount);
 
    const handleOpen = () => setIsOpen(true);
    const handleClose = (e: MouseEvent<HTMLButtonElement>) => {
@@ -27,7 +23,10 @@ export const VideoInfo: FC<IProps> = ({ viewCount, publishedAt, text }) => {
          className={isOpen ? `${styles.info} ${styles.info_active}` : styles.info}
          onClick={handleOpen}>
          <div className={styles.info__statistics}>
-            <span>{formattedViewCount} просмотров</span> <span>{formattedPublishedAt}</span>
+            <span>
+               {viewCount} {viewNoun}
+            </span>
+            <span>{publishedAt}</span>
          </div>
          <div
             className={
@@ -35,7 +34,7 @@ export const VideoInfo: FC<IProps> = ({ viewCount, publishedAt, text }) => {
                   ? `${styles.info__content} ${styles.info__content_active}`
                   : styles.info__content
             }
-            dangerouslySetInnerHTML={{ __html: text }}
+            dangerouslySetInnerHTML={{ __html: description }}
          />
          {isOpen ? (
             <button className={styles.info__button} onClick={handleClose}>
