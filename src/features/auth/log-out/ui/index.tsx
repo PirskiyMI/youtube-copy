@@ -1,16 +1,19 @@
+import { FC, ReactNode } from 'react';
+
 import { useAppDispatch } from 'src/shared/lib/hooks';
-import { Button } from 'src/shared/ui/button';
 import { userActions } from 'src/entities/user';
 
-export const LogOut = () => {
+interface Props {
+   children: ReactNode;
+}
+
+export const LogOut: FC<Props> = ({ children }) => {
    const dispatch = useAppDispatch();
    const { clearUser } = userActions;
 
    const handleLogOut = () => {
       dispatch(clearUser());
-      localStorage.removeItem('access-token');
-      localStorage.removeItem('user');
    };
 
-   return <Button onClick={handleLogOut}>Выйти</Button>;
+   return <div onClick={handleLogOut}>{children}</div>;
 };

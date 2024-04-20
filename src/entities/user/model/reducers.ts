@@ -13,9 +13,9 @@ interface IUserSlice {
 }
 
 const initialState: IUserSlice = {
-   accessToken: localStorage.getItem('access-token') ? localStorage.getItem('access-token') : null,
+   accessToken: null,
    loading: false,
-   user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') as string) : null,
+   user: null,
 };
 
 const userSlice = createSlice({

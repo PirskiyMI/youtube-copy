@@ -24,12 +24,6 @@ export const Auth = createAsyncThunk<Response, void, { rejectValue: string }>(
             return { token, displayName, photoURL };
          });
 
-         localStorage.setItem('access-token', result.token!);
-         localStorage.setItem(
-            'user',
-            JSON.stringify({ name: result.displayName, imgURL: result.photoURL }),
-         );
-
          return result as Response;
       } catch (error) {
          return rejectWithValue('Ошибка при попытке залогиниться');

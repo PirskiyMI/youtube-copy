@@ -1,10 +1,16 @@
 import { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+import { useAppSelector } from 'src/shared/lib/hooks';
+import { getIsAuth } from 'src/entities/user';
+import { LogOut } from 'src/features/auth/log-out';
+
 import styles from './styles.module.scss';
 import { navList } from '../constants/nav-list';
+import LogoutIcon from '../assets/logout-icon.svg?react';
 
 export const TheSidebar: FC = () => {
+   const isAuth = useAppSelector(getIsAuth);
    const { pathname } = useLocation();
 
    return (
@@ -24,6 +30,18 @@ export const TheSidebar: FC = () => {
                      </Link>
                   </li>
                ))}
+               {isAuth && (
+                  <li className={styles.sidebar__item}>
+                     <LogOut>
+                        <div className={styles.sidebar__link}>
+                           <span className={styles.sidebar__icon}>
+                              <LogoutIcon />
+                           </span>
+                           <span>Выйти</span>
+                        </div>
+                     </LogOut>
+                  </li>
+               )}
             </ul>
          </nav>
       </aside>
