@@ -2,10 +2,10 @@ import { FC, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
-import { VideoPreviewSearch, isVideoIdString } from 'src/entities/video';
 
 import styles from './styles.module.scss';
-import { fetchVideoBySearch } from '../api/fetch-video-by-search';
+import { fetchVideoBySearch } from '../model/thunks';
+import { VideoPreviewSearch } from 'src/entities/video/video-preview-search';
 
 interface Props {
    searchValue: string;
@@ -22,9 +22,9 @@ export const VideoBySearch: FC<Props> = ({ searchValue }) => {
    return (
       <ul className={styles.list}>
          {videoList.length &&
-            videoList.map((el) => (
-               <li key={isVideoIdString(el.id) ? el.id : el.id.videoId}>
-                  <Link to={`/watch/${isVideoIdString(el.id) ? el.id : el.id.videoId}`}>
+            videoList.map(({ id, ...el }) => (
+               <li key={id}>
+                  <Link to={`/watch/${id}`}>
                      <VideoPreviewSearch {...el} />
                   </Link>
                </li>

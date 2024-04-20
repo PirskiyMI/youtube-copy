@@ -1,1 +1,1 @@
-export { videosBySearchReducer } from './reducers';
+export { videosBySearchReducer } from './slice';

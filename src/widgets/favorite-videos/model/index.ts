@@ -1,1 +1,1 @@
-export { favoriteVideosReducer } from './reducers';
+export { favoriteVideosReducer } from './slice';

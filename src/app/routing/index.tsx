@@ -8,17 +8,17 @@ const HomePage = lazy(async () => {
    const { HomePage } = await import('src/pages/home-page');
    return { default: HomePage };
 });
-const SearchPage = lazy(async () => {
-   const { SearchPage } = await import('src/pages/search-page');
-   return { default: SearchPage };
+const FavoritesPage = lazy(async () => {
+   const { FavoritesPage } = await import('src/pages/favorites-page');
+   return { default: FavoritesPage };
 });
 const ViewPage = lazy(async () => {
    const { ViewPage } = await import('src/pages/view-page');
    return { default: ViewPage };
 });
-const FavoritesPage = lazy(async () => {
-   const { FavoritesPage } = await import('src/pages/favorites-page');
-   return { default: FavoritesPage };
+const SearchPage = lazy(async () => {
+   const { SearchPage } = await import('src/pages/search-page');
+   return { default: SearchPage };
 });
 
 export const Routing = () => {
@@ -27,8 +27,8 @@ export const Routing = () => {
          <Route path={Path.HOME_PAGE} element={<Layout />}>
             <Route index element={<HomePage />} />
             <Route path={Path.VIEW_PAGE} element={<ViewPage />} />
-            <Route path={Path.SEARCH_PAGE} element={<SearchPage />} />
             <Route path={Path.FAVORITES_PAGE} element={<FavoritesPage />} />
+            <Route path={Path.SEARCH_PAGE} element={<SearchPage />} />
          </Route>
       </Routes>
    );

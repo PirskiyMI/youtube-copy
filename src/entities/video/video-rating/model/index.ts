@@ -1,4 +1,4 @@
-export { videoRatingReducer } from './slices';
+export { videoRatingReducer } from './slice';
 export {
    getVideoRatingSelector,
    getVideoRatingErrorSelector,

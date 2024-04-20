@@ -1,0 +1,1 @@
+export { popularVideoReducer } from './slice';

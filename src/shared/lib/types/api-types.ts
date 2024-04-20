@@ -12,21 +12,11 @@ export interface PageInfo {
    resultsPerPage: number;
 }
 export interface Thumbnails {
-   default: Default;
-   medium: Medium;
-   high: High;
+   default: Thumbnail;
+   medium: Thumbnail;
+   high: Thumbnail;
 }
-interface Default {
-   url: string;
-   width: number;
-   height: number;
-}
-interface Medium {
-   url: string;
-   width: number;
-   height: number;
-}
-interface High {
+export interface Thumbnail {
    url: string;
    width: number;
    height: number;

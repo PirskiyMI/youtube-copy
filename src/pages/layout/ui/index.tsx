@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { ScrollToTop } from 'src/shared/ui/scroll-to-top';
@@ -13,7 +14,9 @@ export const Layout = () => {
          <TheHeader />
          <TheSidebar />
          <main className={styles.layout__main}>
-            <Outlet />
+            <Suspense>
+               <Outlet />
+            </Suspense>
          </main>
       </div>
    );

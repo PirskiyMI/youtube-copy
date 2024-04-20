@@ -3,56 +3,40 @@ import { Link } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 
 import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
-import { VideoPreview, isVideoIdString } from 'src/entities/video';
+import { VideoPreview } from 'src/entities/video/video-preview';
 
 import styles from './styles.module.scss';
-import { getPopularVideoDataSelector } from '../model/selectors';
-import { fetchPopularVideo } from '../api/fetch-popular-video';
+import { getPopularVideoListSelector } from '../model/selectors';
+import { fetchPopularVideo } from '../model/thunks';
 
 export const PopularVideoList = () => {
-   const { nextPageToken, videoList } = useAppSelector(getPopularVideoDataSelector);
+   const videoList = useAppSelector(getPopularVideoListSelector);
    const { ref, inView } = useInView();
    const dispatch = useAppDispatch();
 
    useEffect(() => {
-      dispatch(fetchPopularVideo({ token: nextPageToken, maxResult: 20 }));
+      dispatch(fetchPopularVideo({ maxResults: 20 }));
    }, []);
 
    useEffect(() => {
       if (inView && videoList.length < 50) {
-         dispatch(fetchPopularVideo({ token: nextPageToken, maxResult: 10 }));
+         dispatch(fetchPopularVideo({ maxResults: 10 }));
       }
    }, [inView]);
 
    return (
       <section className={styles.clips}>
          <ul className={styles.clips__list}>
-            {videoList.map((el, index, array) => {
-               if (index === array.length - 1) {
-                  return (
-                     <li
-                        ref={ref}
-                        key={isVideoIdString(el.id) ? el.id : el.id?.videoId}
-                        className={styles.clips__item}>
-                        <Link to={`/watch/${isVideoIdString(el.id) ? el.id : el.id?.videoId}`}>
-                           <VideoPreview {...el} />
-                        </Link>
-                     </li>
-                  );
-               } else {
-                  return (
-                     <li
-                        key={isVideoIdString(el.id) ? el.id : el.id?.videoId}
-                        className={styles.clips__item}>
-                        <Link
-                           to={`/watch/${isVideoIdString(el.id) ? el.id : el.id?.videoId}`}
-                           style={{ width: '100%' }}>
-                           <VideoPreview {...el} />
-                        </Link>
-                     </li>
-                  );
-               }
-            })}
+            {videoList.map((el, index, array) => (
+               <li
+                  ref={index === array.length - 1 ? ref : null}
+                  key={el.id}
+                  className={styles.clips__item}>
+                  <Link to={`/watch/${el.id}`}>
+                     <VideoPreview {...el} />
+                  </Link>
+               </li>
+            ))}
          </ul>
       </section>
    );

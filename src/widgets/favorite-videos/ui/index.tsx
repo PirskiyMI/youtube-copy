@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 
 import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
-import { VideoPreview, VideoPreviewSkeleton, isVideoIdString } from 'src/entities/video';
+import { VideoPreview } from 'src/entities/video/video-preview';
+import { VideoPreviewSkeleton } from 'src/entities/video/video-preview/ui/skeleton';
 
 import {
    getFavoriteVideoError,
    getFavoriteVideoListSelector,
    getFavoriteVideoLoading,
 } from '../model/selectors';
-import { fetchFavoriteVideo } from '../api/fetch-favorite-video';
-import { favoriteVideosActions } from '../model/reducers';
+import { fetchFavoriteVideo } from '../model/thunks';
+import { favoriteVideosActions } from '../model/slice';
 import styles from './styles.module.scss';
 
 export const FavoriteVideoList = () => {
@@ -60,9 +61,9 @@ export const FavoriteVideoList = () => {
             {videoList.map((el, index, array) => (
                <li
                   ref={index === array.length - 1 ? ref : null}
-                  key={isVideoIdString(el.id) ? el.id : el.id?.videoId}
+                  key={el.id}
                   className={styles.clips__item}>
-                  <Link to={`/watch/${isVideoIdString(el.id) ? el.id : el.id?.videoId}`}>
+                  <Link to={`/watch/${el.id}`}>
                      <VideoPreview {...el} />
                   </Link>
                </li>

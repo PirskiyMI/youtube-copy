@@ -3,7 +3,7 @@ import { FC, Suspense, lazy, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
 import { getVideoRating, getVideoRatingSelector } from 'src/entities/video/video-rating';
 import { Channel, fetchSubscriptionStatus, getSubscriptionStatus } from 'src/entities/channel';
-import { VideoInfo } from 'src/entities/video-info';
+import { VideoInfo } from 'src/entities/video/video-info';
 import { getIsAuth } from 'src/entities/user';
 import { LogIn } from 'src/features/auth/log-in';
 
@@ -32,6 +32,7 @@ const RateVideoUnauthorized = lazy(async () => {
 
 import styles from './styles.module.scss';
 import { getVideoInfo } from '../api/get-video-info';
+import { videoPlayerActions } from 'src/entities/video/video-player';
 
 interface IProps {
    id: string;
@@ -51,6 +52,7 @@ export const VideoDescription: FC<IProps> = ({ id }) => {
    const subscribeStatus = useAppSelector(getSubscriptionStatus);
    const videoRating = useAppSelector(getVideoRatingSelector);
    const isAuth = useAppSelector(getIsAuth);
+   const { setVideoTitle } = videoPlayerActions;
    const dispatch = useAppDispatch();
 
    useEffect(() => {
@@ -70,6 +72,13 @@ export const VideoDescription: FC<IProps> = ({ id }) => {
    useEffect(() => {
       if (snippet?.channelId) dispatch(fetchSubscriptionStatus(snippet.channelId));
    }, [snippet?.channelId]);
+
+   useEffect(() => {
+      if (snippet?.title) dispatch(setVideoTitle(snippet?.title));
+      return () => {
+         dispatch(setVideoTitle(''));
+      };
+   }, [snippet?.title]);
 
    if (!statistics || !snippet) return null;
 
