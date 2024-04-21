@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchSubscriptionStatus } from '../api/fetch-subscription-status';
 import { fetchChannelDetails } from '../api/fetch-channel-details';
+import { createSubscription } from '../api';
 
 interface ChannelData {
    title: string;
@@ -42,6 +43,7 @@ const channelSlice = createSlice({
             state.error = null;
          })
          .addCase(fetchSubscriptionStatus.fulfilled, (state, { payload }) => {
+            state.loading = false;
             state.data.subscriptionStatus = payload;
          })
          .addCase(fetchSubscriptionStatus.rejected, (state, { payload }) => {
@@ -54,6 +56,14 @@ const channelSlice = createSlice({
             state.data = { ...state.data, ...payload };
          })
          .addCase(fetchChannelDetails.rejected, (state, { payload }) => {
+            if (payload) state.error = payload;
+         })
+         .addCase(createSubscription.pending, (state) => {
+            state.error = null;
+            state.loading = true;
+         })
+         .addCase(createSubscription.rejected, (state, { payload }) => {
+            state.loading = false;
             if (payload) state.error = payload;
          });
    },

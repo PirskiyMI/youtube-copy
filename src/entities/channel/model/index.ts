@@ -1,2 +1,2 @@
 export * from './reducers';
-export { getSubscriptionStatus } from './selectors';
+export { getSubscriptionStatus, getSubscriptionStatusLoadingSelector } from './selectors';

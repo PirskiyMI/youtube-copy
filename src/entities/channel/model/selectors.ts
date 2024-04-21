@@ -11,3 +11,7 @@ export const getSubscriptionStatus = createSelector(
    [getChannel],
    (channel) => channel.data.subscriptionStatus,
 );
+export const getSubscriptionStatusLoadingSelector = createSelector(
+   [getChannel],
+   (selector) => selector.loading,
+);
