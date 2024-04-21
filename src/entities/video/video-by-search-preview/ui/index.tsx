@@ -3,9 +3,9 @@ import { FC } from 'react';
 import { Avatar } from 'src/shared/ui/avatar';
 
 import styles from './styles.module.scss';
-import { VideoPreviewSearchProps } from '../types';
+import { VideoBySearchPreviewProps } from '../types';
 
-export const VideoPreviewSearch: FC<VideoPreviewSearchProps> = ({
+export const VideoBySearchPreview: FC<VideoBySearchPreviewProps> = ({
    channelTitle,
    title,
    description,

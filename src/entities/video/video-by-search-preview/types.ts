@@ -1,12 +1,15 @@
 import { Thumbnail } from 'src/shared/lib/types';
 
-export interface VideoPreviewSearchProps {
+export interface VideoBySearchPreviewProps extends VideoBySearchPreviewDetails {
+   viewNoun: string;
+}
+
+export interface VideoBySearchPreviewDetails {
    channelTitle: string;
    title: string;
    description: string;
    publishedAt: string;
    duration: string;
    viewCount: string;
-   viewNoun: string;
    thumbnail: Thumbnail;
 }

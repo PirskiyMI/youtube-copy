@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { VideoPreviewSearchProps } from 'src/entities/video/video-preview-search';
+import { VideoBySearchPreviewDetails } from 'src/entities/video/video-by-search-preview';
 
 import { fetchVideoBySearch } from './thunks';
 
-export interface VideoListItem extends VideoPreviewSearchProps {
+export interface VideoListItem extends VideoBySearchPreviewDetails {
    id: string;
 }
 

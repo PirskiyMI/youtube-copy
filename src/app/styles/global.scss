@@ -13,3 +13,10 @@ body {
 #root {
    width: 100%;
 }
+
+.preloader {
+   height: 80vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}

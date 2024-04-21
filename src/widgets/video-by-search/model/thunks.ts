@@ -1,11 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { request } from 'src/shared/api';
-import {
-   VideoResponse,
-   fetchVideoDetails,
-   formatVideoDetails,
-} from 'src/entities/video/video-details';
+import { VideoResponse, fetchVideoDetails } from 'src/entities/video/video-details';
 
 import { VideoListItem } from './slice';
 
@@ -50,12 +46,7 @@ export const fetchVideoBySearch = createAsyncThunk<
             return res.map(async (el) => {
                const statistics = await fetchVideoDetails(el.id);
 
-               const details = formatVideoDetails({
-                  publishedAt: el.publishedAt,
-                  ...statistics,
-               });
-
-               return { ...el, ...details };
+               return { ...el, ...statistics };
             });
          })
          .then((res) => Promise.all([...res]));
