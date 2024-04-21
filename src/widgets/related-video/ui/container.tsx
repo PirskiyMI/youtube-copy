@@ -1,16 +1,14 @@
-import { memo, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { FC, useEffect } from 'react';
 
-import { useAppSelector, useAppDispatch } from 'src/shared/lib/hooks';
+import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
 import { getVideoTitleSelector } from 'src/entities/video/video-player';
-import { VideoPreviewShort } from 'src/entities/video/video-preview-related';
 
-import styles from './styles.module.scss';
 import { relatedVideoActions } from '../model/slice';
 import { getRelatedVideoDataSelector } from '../model/selectors';
 import { fetchRelatedVideo } from '../model/thunks';
+import { RelatedVideoList } from './ui';
 
-export const RelatedVideoList = memo(() => {
+export const RelatedVideoListContainer: FC = () => {
    const { clearVideoList } = relatedVideoActions;
    const { videoList, loading } = useAppSelector(getRelatedVideoDataSelector);
    const videoTitle = useAppSelector(getVideoTitleSelector);
@@ -24,18 +22,8 @@ export const RelatedVideoList = memo(() => {
    }, [videoTitle, dispatch, clearVideoList]);
 
    if (loading) {
-      return <div>...Loading</div>;
+      return <></>;
    }
 
-   return (
-      <ul className={styles.list}>
-         {videoList.map((el) => (
-            <li key={el.id} className={styles.list__item}>
-               <Link to={`/watch/${el.id}`}>
-                  <VideoPreviewShort {...el} />
-               </Link>
-            </li>
-         ))}
-      </ul>
-   );
-});
+   return <RelatedVideoList videoList={videoList} />;
+};

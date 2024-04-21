@@ -1,16 +1,17 @@
 import { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { useAppSelector } from 'src/shared/lib/hooks';
-import { getIsAuth } from 'src/entities/user';
 import { LogOut } from 'src/features/auth/log-out';
 
 import styles from './styles.module.scss';
 import { navList } from '../constants/nav-list';
 import LogoutIcon from '../assets/logout-icon.svg?react';
 
-export const TheSidebar: FC = () => {
-   const isAuth = useAppSelector(getIsAuth);
+interface Props {
+   isAuth: boolean;
+}
+
+export const TheSidebar: FC<Props> = ({ isAuth }) => {
    const { pathname } = useLocation();
 
    return (

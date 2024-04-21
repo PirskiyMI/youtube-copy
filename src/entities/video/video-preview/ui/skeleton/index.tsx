@@ -9,8 +9,7 @@ export const VideoPreviewSkeleton = () => {
             <Skeleton className={styles.skeleton__avatar} />
             <div className={styles.skeleton__text}>
                <Skeleton className={styles.skeleton__item} />
-               <Skeleton className={styles.skeleton__item} />
-               <Skeleton className={styles.skeleton__item} />
+               <Skeleton className={`${styles.skeleton__item} ${styles.skeleton__item_short}`} />
             </div>
          </div>
       </div>

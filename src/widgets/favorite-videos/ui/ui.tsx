@@ -34,7 +34,7 @@ export const FavoriteVideoList: FC<Props> = ({ loading, videoList }) => {
                   <Link to={`/watch/${id}`}>
                      <VideoPreview
                         duration={formatVideoDuration(duration)}
-                        {...formatVideoDetails({ viewCount, duration, publishedAt })}
+                        {...formatVideoDetails({ viewCount, publishedAt })}
                         {...el}
                      />
                   </Link>

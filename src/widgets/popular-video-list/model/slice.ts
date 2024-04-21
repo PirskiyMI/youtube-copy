@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { VideoPreviewDetails } from 'src/entities/video/video-preview';
-import { fetchPopularVideo } from 'src/widgets/popular-video/model/thunks';
+import { fetchPopularVideo } from 'src/widgets/popular-video-list/model/thunks';
 
 export interface VideoListItem extends VideoPreviewDetails {
    id: string;

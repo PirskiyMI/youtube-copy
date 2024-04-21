@@ -3,7 +3,7 @@ import { combineReducers } from '@reduxjs/toolkit';
 import { channelReducer } from 'src/entities/channel';
 import { userReducer } from 'src/entities/user';
 import { videoPlayerReducer } from 'src/entities/video/video-player';
-import { popularVideoReducer } from 'src/widgets/popular-video';
+import { popularVideoReducer } from 'src/widgets/popular-video-list';
 import { relatedVideoReducer } from 'src/widgets/related-video';
 import { videoCommentReducer } from 'src/widgets/video-comment';
 import { videosBySearchReducer } from 'src/widgets/video-by-search';
