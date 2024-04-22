@@ -7,7 +7,7 @@ import { Logo } from 'src/shared/ui/logo';
 import { Avatar } from 'src/shared/ui/avatar';
 import { getUser } from 'src/entities/user/model/selectors';
 import { SearchForm } from 'src/features/search-form';
-import { LogIn } from 'src/features/auth/log-in';
+import { Login } from 'src/features/auth/login';
 
 import styles from './styles.module.scss';
 
@@ -20,7 +20,7 @@ export const TheHeader: FC = () => {
             <Logo />
          </Link>
          <SearchForm />
-         {user ? <Avatar image={user?.imgURL} /> : <LogIn />}
+         {user ? <Avatar image={user?.imgURL} /> : <Login />}
       </header>
    );
 };

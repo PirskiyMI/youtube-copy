@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { LogIn } from 'src/features/auth/log-in';
+import { Login } from 'src/features/auth/login';
 
 import styles from './styles.module.scss';
 
@@ -10,7 +10,7 @@ export const CommentFormUnauthorized: FC = () => {
          <h3 className={styles.from__title}>
             Чтобы оставить комментарий к этому видео, войдите в аккаунт
          </h3>
-         <LogIn />
+         <Login />
       </div>
    );
 };

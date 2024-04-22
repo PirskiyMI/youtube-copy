@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { LogOut } from 'src/features/auth/log-out';
+import { Logout } from 'src/features/auth/logout';
 
 import styles from './styles.module.scss';
 import { navList } from '../constants/nav-list';
@@ -33,14 +33,14 @@ export const TheSidebar: FC<Props> = ({ isAuth }) => {
                ))}
                {isAuth && (
                   <li className={styles.sidebar__item}>
-                     <LogOut>
+                     <Logout>
                         <div className={styles.sidebar__link}>
                            <span className={styles.sidebar__icon}>
                               <LogoutIcon />
                            </span>
                            <span>Выйти</span>
                         </div>
-                     </LogOut>
+                     </Logout>
                   </li>
                )}
             </ul>

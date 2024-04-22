@@ -3,7 +3,7 @@ import { FC, Suspense, lazy } from 'react';
 import { formatVideoDetails } from 'src/entities/video/video-details';
 import { Channel } from 'src/entities/channel';
 import { VideoInfo } from 'src/entities/video/video-info';
-import { LogIn } from 'src/features/auth/log-in';
+import { Login } from 'src/features/auth/login';
 
 const RemoveSubscribe = lazy(async () => {
    const { RemoveSubscribe } = await import('src/features/subscribe/remove-subscribe');
@@ -58,7 +58,7 @@ export const VideoDescription: FC<IProps> = ({
                   {isAuth ? (
                      <RateVideo videoId={videoId} likeCount={likeCount} rate={videoRating} />
                   ) : (
-                     <RateVideoUnauthorized likeCount={likeCount} authButton={<LogIn />} />
+                     <RateVideoUnauthorized likeCount={likeCount} authButton={<Login />} />
                   )}
                </Suspense>
                <Suspense>
@@ -69,7 +69,7 @@ export const VideoDescription: FC<IProps> = ({
                         <AddSubscribe channelId={channelId} />
                      )
                   ) : (
-                     <AddSubscribeUnauthorized authButton={<LogIn />} />
+                     <AddSubscribeUnauthorized authButton={<Login />} />
                   )}
                </Suspense>
             </div>
