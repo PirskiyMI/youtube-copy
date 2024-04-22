@@ -1,25 +1,16 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 
-import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
 import { getCount, getNoun } from 'src/shared/lib/helpers';
 import { Avatar } from 'src/shared/ui/avatar';
 
 import styles from './styles.module.scss';
-import { getChannelData } from '../model/selectors';
-import { fetchChannelDetails } from '../api/fetch-channel-details';
 
-interface IProps {
-   channelId: string;
+interface Props {
+   title: string;
+   subscriberCount: string;
 }
 
-export const Channel: FC<IProps> = ({ channelId }) => {
-   const { title, subscriberCount } = useAppSelector(getChannelData);
-   const dispatch = useAppDispatch();
-
-   useEffect(() => {
-      dispatch(fetchChannelDetails(channelId));
-   }, [channelId]);
-
+export const Channel: FC<Props> = ({ title, subscriberCount }) => {
    const formattedSubscriberCount = getCount(subscriberCount);
    const subscriberCountNoun = getNoun(
       Number(subscriberCount),

@@ -1,2 +1,2 @@
-export * from './reducers';
-export { getSubscriptionStatus, getSubscriptionStatusLoadingSelector } from './selectors';
+export { channelActions, channelReducer } from './slice';
+export { getChannelSubscriptionStatusSelector, getChannelLoadingSelector } from './selectors';

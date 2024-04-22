@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
-import { createSubscription, getSubscriptionStatusLoadingSelector } from 'src/entities/channel';
+import { createSubscription, getChannelLoadingSelector } from 'src/entities/channel';
 
 import { AddSubscribe } from './ui';
 
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const AddSubscribeContainer: FC<Props> = ({ channelId }) => {
-   const disabled = useAppSelector(getSubscriptionStatusLoadingSelector);
+   const disabled = useAppSelector(getChannelLoadingSelector);
    const dispatch = useAppDispatch();
 
    const handleCreateSubscription = () => {

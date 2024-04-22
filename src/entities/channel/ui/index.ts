@@ -1,0 +1,1 @@
+export {ChannelContainer as Channel} from './container'

@@ -1,7 +1,10 @@
 import { FC, useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
-import { fetchSubscriptionStatus, getSubscriptionStatus } from 'src/entities/channel';
+import {
+   fetchSubscriptionStatus,
+   getChannelSubscriptionStatusSelector,
+} from 'src/entities/channel';
 import { getVideoRating, getVideoRatingSelector } from 'src/entities/video/video-rating';
 import { videoPlayerActions } from 'src/entities/video/video-player';
 import { getIsAuth } from 'src/entities/user';
@@ -16,7 +19,7 @@ interface Props {
 
 export const VideoDescriptionContainer: FC<Props> = ({ videoId }) => {
    const details = useAppSelector(getVideoDetailsSelector);
-   const subscribeStatus = useAppSelector(getSubscriptionStatus);
+   const subscribeStatus = useAppSelector(getChannelSubscriptionStatusSelector);
    const videoRating = useAppSelector(getVideoRatingSelector);
    const isAuth = useAppSelector(getIsAuth);
    const { setVideoTitle } = videoPlayerActions;

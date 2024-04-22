@@ -1,21 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchSubscriptionStatus } from '../api/fetch-subscription-status';
-import { fetchChannelDetails } from '../api/fetch-channel-details';
-import { createSubscription } from '../api';
+import { fetchSubscriptionStatus } from './thunks/fetch-subscription-status';
+import { fetchChannelDetails } from './thunks/fetch-channel-details';
+import { createSubscription } from './thunks';
 
-interface ChannelData {
+interface Data {
    title: string;
    subscriberCount: string;
    subscriptionStatus: string;
 }
 
-interface ChannelState {
-   data: ChannelData;
+interface State {
+   data: Data;
    loading: boolean;
    error: string | null;
 }
 
-const initialState: ChannelState = {
+const initialState: State = {
    data: {
       title: '',
       subscriberCount: '',
