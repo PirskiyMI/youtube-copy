@@ -1,9 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import { request } from 'src/shared/api';
+import { rate } from 'src/shared/lib/types';
 
 export const setVideoRating = createAsyncThunk<
-   'like' | 'dislike' | 'none',
-   { videoId: string; rate: 'like' | 'dislike' | 'none' },
+   rate,
+   { videoId: string; rate: rate },
    { rejectValue: string; state: RootState }
 >('video/addLikeVideo', async ({ videoId, rate }, { rejectWithValue, getState }) => {
    const accessToken = getState().user.accessToken;
@@ -30,7 +32,7 @@ interface VideoRatingRequest {
 }
 
 export const getVideoRating = createAsyncThunk<
-   'like' | 'dislike' | 'none' | 'unspecified',
+   rate,
    string,
    { rejectValue: string; state: RootState }
 >('video/getVideoRating', async (videoId, { rejectWithValue, getState }) => {
@@ -41,7 +43,7 @@ export const getVideoRating = createAsyncThunk<
             params: { id: videoId },
             headers: { Authorization: `Bearer ${accessToken}` },
          })
-         .then((res) => res.data.items[0].rating as 'like' | 'dislike' | 'none' | 'unspecified');
+         .then((res) => res.data.items[0].rating as rate);
    } catch (error) {
       return rejectWithValue(`${error}`);
    }

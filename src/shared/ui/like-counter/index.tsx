@@ -2,12 +2,13 @@ import { FC } from 'react';
 
 import LikeIcon from '../../lib/assets/images/like.svg?react';
 import DislikeIcon from '../../lib/assets/images/dislike.svg?react';
+import { rate } from '../../lib/types/rate-type';
 
 import styles from './styles.module.scss';
 
 interface Props {
    likeCount: string;
-   rate: 'like' | 'dislike' | 'none' | 'unspecified';
+   rate: rate;
    onLikeClick: () => void;
    onDislikeClick: () => void;
 }
