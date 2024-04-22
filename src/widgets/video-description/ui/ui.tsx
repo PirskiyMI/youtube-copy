@@ -52,7 +52,7 @@ export const VideoDescription: FC<IProps> = ({
             <h3 className={styles.description__title}>{title}</h3>
          </div>
          <div className={styles.description__main}>
-            {channelId && <Channel channelId={channelId} />}
+            <Channel channelId={channelId} />
             <div className={styles.description__controls}>
                <Suspense>
                   {isAuth ? (

@@ -1,0 +1,23 @@
+.skeleton {
+   width: 200px;
+   &,
+   &__body {
+      display: flex;
+      gap: 10px;
+   }
+   &__body {
+      flex: 1 1 auto;
+      flex-direction: column;
+   }
+   &__avatar {
+      flex: 0 0 40px;
+      height: 40px;
+      border-radius: 50%;
+   }
+   &__item {
+      height: 12px;
+      &_short {
+         width: 50%;
+      }
+   }
+}
