@@ -5,7 +5,7 @@ import { userReducer } from 'src/entities/user';
 import { videoPlayerReducer } from 'src/entities/video/video-player';
 import { popularVideoReducer } from 'src/widgets/popular-video-list';
 import { relatedVideoReducer } from 'src/widgets/related-video-list';
-import { videoCommentReducer } from 'src/widgets/video-comment';
+import { videoCommentReducer } from 'src/widgets/video-comment-list';
 import { videosBySearchReducer } from 'src/widgets/video-list-by-search';
 import { favoriteVideoReducer } from 'src/widgets/favorite-video-list';
 import { videoDescriptionReducer } from 'src/widgets/video-description';
