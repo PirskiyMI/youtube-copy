@@ -2,11 +2,11 @@ import { FC, Suspense, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import { useAppDispatch } from 'src/shared/lib/hooks';
+import { Preloader } from 'src/shared/ui/preloader';
 import { Comment, IComment, fetchComment } from 'src/entities/comment';
-import { CommentForm } from 'src/features/send-comment';
+import { SendCommentForm } from 'src/features/send-comment-form';
 
 import styles from './styles.module.scss';
-import { Preloader } from 'src/shared/ui/preloader';
 import { CommentFormUnauthorized } from './unauthorized';
 
 interface Props {
@@ -36,7 +36,7 @@ export const VideoCommentList: FC<Props> = ({
    return (
       <>
          <Suspense>
-            {isAuth ? <CommentForm videoId={videoId} /> : <CommentFormUnauthorized />}
+            {isAuth ? <SendCommentForm videoId={videoId} /> : <CommentFormUnauthorized />}
          </Suspense>
          <ul className={styles.list}>
             {commentList.map((el, index, array) => (

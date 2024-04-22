@@ -1,12 +1,8 @@
-import { FC, ReactNode, lazy } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { usePopup } from 'src/shared/lib/hooks';
 import { Button } from 'src/shared/ui/button';
-
-const Popup = lazy(async () => {
-   const { Popup } = await import('src/shared/ui/popup');
-   return { default: Popup };
-});
+import { Popup } from 'src/shared/ui/popup';
 
 import styles from './styles.module.scss';
 

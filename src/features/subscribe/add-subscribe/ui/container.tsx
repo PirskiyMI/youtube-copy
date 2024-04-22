@@ -1,14 +1,15 @@
 import { FC } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
-import { Button } from 'src/shared/ui/button';
 import { createSubscription, getSubscriptionStatusLoadingSelector } from 'src/entities/channel';
+
+import { AddSubscribe } from './ui';
 
 interface Props {
    channelId: string;
 }
 
-export const AddSubscribe: FC<Props> = ({ channelId }) => {
+export const AddSubscribeContainer: FC<Props> = ({ channelId }) => {
    const disabled = useAppSelector(getSubscriptionStatusLoadingSelector);
    const dispatch = useAppDispatch();
 
@@ -16,9 +17,5 @@ export const AddSubscribe: FC<Props> = ({ channelId }) => {
       dispatch(createSubscription(channelId));
    };
 
-   return (
-      <Button onClick={handleCreateSubscription} disabled={disabled}>
-         Подписаться
-      </Button>
-   );
+   return <AddSubscribe handleCreateSubscription={handleCreateSubscription} disabled={disabled} />;
 };

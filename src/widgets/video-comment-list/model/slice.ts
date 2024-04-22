@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { IComment, fetchComment } from 'src/entities/comment';
-import { addComment } from 'src/features/send-comment';
+import { addComment } from 'src/features/send-comment-form';
 
 interface State {
    data: {
