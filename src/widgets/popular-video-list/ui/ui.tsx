@@ -2,13 +2,11 @@ import { FC, memo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 
-import { Preloader } from 'src/shared/ui/preloader';
-import { VideoPreview } from 'src/entities/video/video-preview';
+import { VideoPreview, VideoPreviewSkeleton } from 'src/entities/video/video-preview';
 import { VideoPreviewList } from 'src/entities/video/video-preview-list';
 import { formatVideoDetails } from 'src/entities/video/video-details';
 import { formatVideoDuration } from 'src/entities/video/video-details/lib/helpers';
 
-import styles from './styles.module.scss';
 import { VideoListItem } from '../model/slice';
 
 interface Props {
@@ -38,12 +36,13 @@ export const PopularVideoList: FC<Props> = memo(({ loading, videoList, handleInV
                   </Link>
                </li>
             ))}
+            {loading &&
+               [...new Array(8)].map((_, index) => (
+                  <li key={index}>
+                     <VideoPreviewSkeleton />
+                  </li>
+               ))}
          </VideoPreviewList>
-         {loading && (
-            <div className={styles.clips__preloader}>
-               <Preloader />
-            </div>
-         )}
       </section>
    );
 });

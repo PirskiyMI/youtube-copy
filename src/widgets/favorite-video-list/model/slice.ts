@@ -14,23 +14,23 @@ interface Data {
 }
 
 interface State {
-   data: Data | null;
+   data: Data;
    loading: boolean;
    error: string | null;
 }
 
 const initialState: State = {
-   data: null,
+   data: { videoList: [], nextPageToken: '' },
    loading: false,
    error: null,
 };
 
-const favoriteVideosSlice = createSlice({
-   name: 'favoriteVideos',
+const favoriteVideoSlice = createSlice({
+   name: 'favoriteVideo',
    initialState,
    reducers: {
       resetState: (state) => {
-         state.data = null;
+         state.data = { videoList: [], nextPageToken: '' };
          state.loading = false;
          state.error = null;
       },
@@ -43,12 +43,7 @@ const favoriteVideosSlice = createSlice({
          })
          .addCase(fetchFavoriteVideo.fulfilled, (state, { payload }) => {
             state.loading = false;
-            if (state.data) {
-               state.data.nextPageToken = payload.nextPageToken;
-               state.data.videoList = [...state.data.videoList, ...payload.videoList];
-            } else {
-               state.data = payload;
-            }
+            state.data = payload;
          })
          .addCase(fetchFavoriteVideo.rejected, (state, { payload }) => {
             state.loading = false;
@@ -57,5 +52,5 @@ const favoriteVideosSlice = createSlice({
    },
 });
 
-export const favoriteVideosActions = favoriteVideosSlice.actions;
-export const favoriteVideosReducer = favoriteVideosSlice.reducer;
+export const favoriteVideoActions = favoriteVideoSlice.actions;
+export const favoriteVideoReducer = favoriteVideoSlice.reducer;

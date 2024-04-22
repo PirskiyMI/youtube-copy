@@ -15,13 +15,14 @@ export const PopularVideoListContainer: FC = () => {
    const dispatch = useAppDispatch();
 
    useEffect(() => {
-      dispatch(fetchPopularVideo({ maxResults: 10 }));
+      dispatch(fetchPopularVideo({ maxResults: 16 }));
    }, []);
 
    useEffect(() => {
-      if (inView && videoList.length < 50) {
-         dispatch(fetchPopularVideo({ maxResults: 10 }));
+      if (inView && videoList.length < 100) {
+         dispatch(fetchPopularVideo({ maxResults: 16 }));
       }
+      setInView(false);
    }, [inView]);
 
    const handleInView = useCallback((inView: boolean) => {

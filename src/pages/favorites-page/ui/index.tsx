@@ -3,7 +3,7 @@ import { FC, Suspense } from 'react';
 import { useAppSelector } from 'src/shared/lib/hooks';
 import { getIsAuth } from 'src/entities/user';
 import { LogIn } from 'src/features/auth/log-in';
-import { FavoriteVideoList } from 'src/widgets/favorite-videos';
+import { FavoriteVideoList } from 'src/widgets/favorite-video-list';
 
 import styles from './styles.module.scss';
 
@@ -21,7 +21,7 @@ export const FavoritesPage: FC = () => {
                </div>
             </div>
          ) : (
-            <div className={styles.page}>
+            <div>
                <FavoriteVideoList />
             </div>
          )}

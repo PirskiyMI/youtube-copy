@@ -14,9 +14,9 @@ export const fetchFavoriteVideo = createAsyncThunk<
    Response,
    void,
    { rejectValue: string; state: RootState }
->('favoriteVideos/fetchFavoriteVide', async (_, { rejectWithValue, getState }) => {
+>('favoriteVideo/fetchFavoriteVideo', async (_, { rejectWithValue, getState }) => {
    const accessToken = getState().user.accessToken;
-   const nextPageToken = getState().favoriteVideos.data?.nextPageToken;
+   const nextPageToken = getState().favoriteVideo.data?.nextPageToken;
 
    try {
       return await request

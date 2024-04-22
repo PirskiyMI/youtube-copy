@@ -7,7 +7,7 @@ import { popularVideoReducer } from 'src/widgets/popular-video-list';
 import { relatedVideoReducer } from 'src/widgets/related-video';
 import { videoCommentReducer } from 'src/widgets/video-comment';
 import { videosBySearchReducer } from 'src/widgets/video-by-search';
-import { favoriteVideosReducer } from 'src/widgets/favorite-videos';
+import { favoriteVideoReducer } from 'src/widgets/favorite-video-list';
 import { videoDescriptionReducer } from 'src/widgets/video-description';
 import { videoRatingReducer } from 'src/entities/video/video-rating';
 
@@ -16,7 +16,7 @@ export const rootReducer = combineReducers({
    channel: channelReducer,
    relatedVideo: relatedVideoReducer,
    popularVideo: popularVideoReducer,
-   favoriteVideos: favoriteVideosReducer,
+   favoriteVideo: favoriteVideoReducer,
    videoPlayer: videoPlayerReducer,
    videoRating: videoRatingReducer,
    videoBySearch: videosBySearchReducer,

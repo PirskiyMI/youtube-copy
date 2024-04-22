@@ -1,18 +1,18 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-const getFavoriteVideoSelector = (state: RootState) => state.favoriteVideos;
+const getFavoriteVideoSelector = (state: RootState) => state.favoriteVideo;
 
 export const getFavoriteVideoListSelector = createSelector(
    [getFavoriteVideoSelector],
-   (favoriteVideos) => favoriteVideos.data?.videoList,
+   (favoriteVideos) => favoriteVideos.data.videoList,
 );
 
-export const getFavoriteVideoLoading = createSelector(
+export const getFavoriteVideoLoadingSelector = createSelector(
    [getFavoriteVideoSelector],
    (favoriteVideos) => favoriteVideos.loading,
 );
 
-export const getFavoriteVideoError = createSelector(
+export const getFavoriteVideoErrorSelector = createSelector(
    [getFavoriteVideoSelector],
    (favoriteVideos) => favoriteVideos.error,
 );
