@@ -5,13 +5,14 @@ import { Preloader } from 'src/shared/ui/preloader';
 
 import { VideoListBySearch } from './ui';
 import { fetchVideoBySearch } from '../model/thunks';
+import { getVideoListBySearchSelector } from '../model/selectors';
 
 interface Props {
    searchValue: string;
 }
 
 export const VideoListBySearchContainer: FC<Props> = ({ searchValue }) => {
-   const videoList = useAppSelector((state) => state.videoBySearch.videoList);
+   const videoList = useAppSelector(getVideoListBySearchSelector);
    const dispatch = useAppDispatch();
 
    useEffect(() => {

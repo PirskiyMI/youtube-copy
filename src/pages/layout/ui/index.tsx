@@ -2,8 +2,8 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { ScrollToTop } from 'src/shared/ui/scroll-to-top';
-import { TheHeader } from 'src/widgets/header';
-import { TheSidebar } from 'src/widgets/sidebar';
+import { TheHeader } from 'src/widgets/the-header';
+import { TheSidebar } from 'src/widgets/the-sidebar';
 
 import styles from './styles.module.scss';
 

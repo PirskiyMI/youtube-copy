@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { VideoListBySearch } from 'src/widgets/video-by-search';
+import { VideoListBySearch } from 'src/widgets/video-list-by-search';
 
 import styles from './styles.module.scss';
 

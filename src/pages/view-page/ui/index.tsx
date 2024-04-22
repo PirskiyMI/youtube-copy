@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 
 import { VideoPlayer } from 'src/entities/video/video-player';
 import { VideoDescription } from 'src/widgets/video-description';
-//import { RelatedVideoList } from 'src/widgets/related-video';
-//import { VideoCommentList } from 'src/widgets/video-comment';
+//import { RelatedVideoList } from 'src/widgets/related-video-list';
+//import { VideoCommentList } from 'src/widgets/video-comment-list';
 
 import styles from './styles.module.scss';
 

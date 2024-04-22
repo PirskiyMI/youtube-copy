@@ -9,7 +9,7 @@ export const fetchVideoBySearch = createAsyncThunk<
    VideoListItem[],
    string,
    { rejectValue: string }
->('videosBySearch/fetchVideoBySearch', async (searchValue, { rejectWithValue }) => {
+>('videoBySearch/fetchVideoBySearch', async (searchValue, { rejectWithValue }) => {
    try {
       return await request
          .get<VideoResponse>('/search', {

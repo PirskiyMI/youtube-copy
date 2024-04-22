@@ -21,7 +21,7 @@ const initialState: State = {
 };
 
 const videosBySearchSlice = createSlice({
-   name: 'videosBySearch',
+   name: 'videoBySearch',
    initialState,
    reducers: {
       clearVideoList: (state) => {
