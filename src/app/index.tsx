@@ -1,11 +1,8 @@
-import { Routing } from './routing';
-import { withProviders } from './providers';
 import './styles/global.scss';
+import { Providers } from './providers/providers';
 
 const App = (): JSX.Element => {
-   return <Routing />;
+   return <Providers />;
 };
 
-const AppWithProviders = withProviders(App);
-
-export default AppWithProviders;
+export default App;

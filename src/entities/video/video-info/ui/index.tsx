@@ -2,14 +2,14 @@ import { MouseEvent, FC, useState } from 'react';
 
 import styles from './styles.module.scss';
 
-interface IProps {
+interface Props {
    publishedAt: string;
    description: string;
    viewCount: string;
    viewNoun: string;
 }
 
-export const VideoInfo: FC<IProps> = ({ viewCount, viewNoun, publishedAt, description }) => {
+export const VideoInfo: FC<Props> = ({ viewCount, viewNoun, publishedAt, description }) => {
    const [isOpen, setIsOpen] = useState<boolean>(false);
 
    const handleOpen = () => setIsOpen(true);

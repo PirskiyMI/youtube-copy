@@ -17,7 +17,7 @@ import styles from './styles.module.scss';
 import { ControlsSkeleton } from './controls-skeleton';
 import { RatingSkeleton } from './rating-skeleton';
 
-interface IProps {
+interface Props {
    videoId: string;
    isAuth: boolean;
    subscribeStatus: string;
@@ -25,7 +25,7 @@ interface IProps {
    details: VideoDetails;
 }
 
-export const VideoDescription: FC<IProps> = ({
+export const VideoDescription: FC<Props> = ({
    videoId,
    isAuth,
    subscribeStatus,

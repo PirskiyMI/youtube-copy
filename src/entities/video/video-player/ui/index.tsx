@@ -5,11 +5,11 @@ import { useAppDispatch } from 'src/shared/lib/hooks';
 import styles from './styles.module.scss';
 import { videoPlayerActions } from '../model';
 
-interface IProps {
+interface Props {
    src: string;
 }
 
-export const VideoPlayer: FC<IProps> = ({ src }) => {
+export const VideoPlayer: FC<Props> = ({ src }) => {
    const { setVideoId } = videoPlayerActions;
    const dispatch = useAppDispatch();
 
