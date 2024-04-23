@@ -1,10 +1,23 @@
 import { Response } from 'src/shared/lib/types';
 
+export interface TopLevelCommentProps extends CommentProps {
+   totalReplyCount?: number;
+   replies?: CommentProps[];
+}
+
+export interface CommentProps {
+   id: string;
+   publishedAt: string;
+   textDisplay: string;
+   authorDisplayName: string;
+}
+
 export interface CommentResponse extends Response {
    nextPageToken: string;
-   items: IComment[];
+   items: Comment[];
 }
-export interface IComment {
+
+interface Comment {
    kind: string;
    etag: string;
    id: string;
@@ -13,6 +26,7 @@ export interface IComment {
       comments: IReplyComment[];
    };
 }
+
 export interface Snippet {
    channelId: string;
    videoId: string;
@@ -21,12 +35,14 @@ export interface Snippet {
    totalReplyCount: number;
    isPublic: boolean;
 }
+
 interface TopLevelComment {
    kind: string;
    etag: string;
    id: string;
    snippet: CommentSnippet;
 }
+
 interface CommentSnippet {
    channelId: string;
    videoId: string;
@@ -42,15 +58,18 @@ interface CommentSnippet {
    publishedAt: string;
    updatedAt: string;
 }
+
 interface AuthorChannelId {
    value: string;
 }
-export interface IReplyComment {
+
+interface IReplyComment {
    kind: string;
    etag: string;
    id: string;
    snippet: ReplyCommentSnippet;
 }
-export interface ReplyCommentSnippet extends CommentSnippet {
+
+interface ReplyCommentSnippet extends CommentSnippet {
    parentId: string;
 }

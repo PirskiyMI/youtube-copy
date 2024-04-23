@@ -3,18 +3,19 @@ import { useInView } from 'react-intersection-observer';
 
 import { useAppDispatch } from 'src/shared/lib/hooks';
 import { Preloader } from 'src/shared/ui/preloader';
-import { Comment, IComment, fetchComment } from 'src/entities/comment';
+import { Comment, TopLevelCommentProps } from 'src/entities/comment';
 import { SendCommentForm } from 'src/features/send-comment-form';
 
 import styles from './styles.module.scss';
 import { CommentFormUnauthorized } from './unauthorized';
+import { fetchComment } from '../model/thunks';
 
 interface Props {
    videoId: string;
    nextPageToken: string;
    loading: boolean;
    isAuth: boolean;
-   commentList: IComment[];
+   commentList: TopLevelCommentProps[];
 }
 
 export const VideoCommentList: FC<Props> = ({

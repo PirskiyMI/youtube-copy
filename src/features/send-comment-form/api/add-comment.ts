@@ -1,18 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { request } from 'src/shared/api';
-import { IComment } from 'src/entities/comment';
+import { TopLevelCommentProps } from 'src/entities/comment';
 
-interface FulfilledResponse {
-   comment: IComment;
-}
 interface FetchArguments {
    videoId: string;
    text: string;
 }
 
 export const addComment = createAsyncThunk<
-   FulfilledResponse,
+   TopLevelCommentProps,
    FetchArguments,
    { rejectValue: string; state: RootState }
 >('comment/addComment', async ({ videoId, text }, { rejectWithValue, getState }) => {
@@ -28,15 +25,25 @@ export const addComment = createAsyncThunk<
             },
          },
       };
-      const response = await request
+      const comment = await request
          .post<Root>('/commentThreads', params, {
             params: { part: 'snippet' },
             headers: { Authorization: `Bearer ${accessToken}` },
          })
-         .then((res) => ({
-            comment: res.data,
-         }));
-      return response;
+         .then((res) => {
+            const id = res.data.id;
+            const { authorDisplayName, publishedAt, textDisplay } =
+               res.data.snippet.topLevelComment.snippet;
+
+            return {
+               id,
+               authorDisplayName,
+               publishedAt,
+               textDisplay,
+               replies: undefined,
+            };
+         });
+      return comment;
    } catch (error) {
       return rejectWithValue('Ошибка при создании комментария');
    }

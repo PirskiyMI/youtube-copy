@@ -1,13 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { IComment, fetchComment } from 'src/entities/comment';
+import { TopLevelCommentProps } from 'src/entities/comment';
 import { addComment } from 'src/features/send-comment-form';
 
+import { fetchComment } from './thunks';
+
+interface Data {
+   commentList: TopLevelCommentProps[];
+   nextPageToken: string;
+}
+
 interface State {
-   data: {
-      commentList: IComment[];
-      nextPageToken: string;
-   };
+   data: Data;
    loading: boolean;
    error: string | null;
 }
@@ -48,9 +52,9 @@ const videoCommentSlice = createSlice({
             state.loading = true;
             state.error = null;
          })
-         .addCase(addComment.fulfilled, (state, { payload: { comment } }) => {
+         .addCase(addComment.fulfilled, (state, { payload }) => {
             state.loading = false;
-            state.data.commentList = [comment, ...state.data.commentList];
+            state.data.commentList = [payload, ...state.data.commentList];
          })
          .addCase(addComment.rejected, (state, { payload }) => {
             state.loading = false;

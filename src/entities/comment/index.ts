@@ -1,3 +1,2 @@
 export * from './ui';
-export * from './api/fetch-comment';
-export { type IComment } from './lib/types';
+export type { CommentResponse, TopLevelCommentProps } from './types';

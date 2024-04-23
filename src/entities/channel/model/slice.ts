@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { fetchSubscriptionStatus } from './thunks/fetch-subscription-status';
 import { fetchChannelDetails } from './thunks/fetch-channel-details';
-import { createSubscription } from './thunks';
+import { createSubscription } from './thunks/create-subscription';
 
 interface Data {
    title: string;

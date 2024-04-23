@@ -1,8 +1,6 @@
 import { FC, useEffect } from 'react';
 
-import { Preloader } from 'src/shared/ui/preloader';
 import { useAppDispatch, useAppSelector } from 'src/shared/lib/hooks';
-import { fetchComment } from 'src/entities/comment';
 import { getIsAuth } from 'src/entities/user';
 
 import { VideoCommentList } from './ui';
@@ -13,6 +11,7 @@ import {
    getVideoCommentLoadingSelector,
    getVideoCommentNextPageTokenSelector,
 } from '../model/selectors';
+import { fetchComment } from '../model/thunks';
 
 interface Props {
    videoId: string;
@@ -36,7 +35,7 @@ export const VideoCommentListContainer: FC<Props> = ({ videoId }) => {
 
    if (error) return <div>{error}</div>;
 
-   if (loading && !commentList.length) return <Preloader />;
+   if (loading && !commentList.length) return <></>;
 
    return (
       <VideoCommentList

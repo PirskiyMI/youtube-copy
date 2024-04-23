@@ -4,12 +4,10 @@ import moment from 'moment';
 import { useShowMore } from 'src/shared/lib/hooks';
 import { Avatar } from 'src/shared/ui/avatar';
 
-import { IReplyComment } from '../lib/types';
+import { CommentProps } from '../types';
 import styles from './styles.module.scss';
 
-export const ReplyComment: FC<IReplyComment> = ({
-   snippet: { authorDisplayName, textDisplay, publishedAt },
-}) => {
+export const ReplyComment: FC<CommentProps> = ({ authorDisplayName, textDisplay, publishedAt }) => {
    const { ref, isTextShow, isButtonShow, toggleIsTextShow } = useShowMore();
 
    return (
