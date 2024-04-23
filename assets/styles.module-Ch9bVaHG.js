@@ -1,1 +1,0 @@
-import{b as o,j as r,B as e,H as u,G as a}from"./index-NkGzaZM3.js";const _=({channelId:p})=>{const s=o(),t=()=>{s(u(p)),setTimeout(()=>{s(a(p))},500)};return r.jsx(e,{onClick:t,children:"Подписаться"})},c="_popup_1r7n5_1",n="_popup__wrapper_1r7n5_4",b={popup:c,popup__wrapper:n};export{_ as A,b as s};
