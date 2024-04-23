@@ -15,7 +15,7 @@ import { fetchVideoDetails } from '../model/thunks';
 
 interface Props {
    videoId: string;
-}
+} 
 
 export const VideoDescriptionContainer: FC<Props> = ({ videoId }) => {
    const details = useAppSelector(getVideoDetailsSelector);

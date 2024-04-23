@@ -1,8 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+
+import { rate } from 'src/shared/lib/types';
+
 import { getVideoRating, setVideoRating } from './thunks';
 
 interface State {
-   rating: 'like' | 'dislike' | 'none' | 'unspecified';
+   rating: rate;
    loading: boolean;
    error: string | null;
 }

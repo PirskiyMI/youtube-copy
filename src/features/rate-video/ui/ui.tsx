@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { getCount } from 'src/shared/lib/helpers';
 import { rate } from 'src/shared/lib/types';
-import { LikeCounter } from 'src/shared/ui/like-counter';
+import { LikeCounter } from 'src/entities/video/video-rating';
 
 type onButtonClick = () => void;
 

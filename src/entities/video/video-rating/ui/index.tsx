@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
-import LikeIcon from '../../lib/assets/images/like.svg?react';
-import DislikeIcon from '../../lib/assets/images/dislike.svg?react';
-import { rate } from '../../lib/types/rate-type';
+import { rate } from '../../../../shared/lib/types/rate-type';
 
+import LikeIcon from '../assets/like.svg?react';
+import DislikeIcon from '../assets/dislike.svg?react';
 import styles from './styles.module.scss';
 
 interface Props {

@@ -1,41 +1,27 @@
-import { FC, Suspense, lazy } from 'react';
+import { FC, Suspense } from 'react';
 
+import { rate } from 'src/shared/lib/types';
 import { formatVideoDetails } from 'src/entities/video/video-details';
 import { Channel } from 'src/entities/channel';
 import { VideoInfo } from 'src/entities/video/video-info';
 import { Login } from 'src/features/auth/login';
+import { RateVideo } from 'src/features/rate-video';
+import { RateVideoUnauthorized } from 'src/features/rate-video-unauthorized';
+import { RemoveSubscribe } from 'src/features/subscribe/remove-subscribe';
+import { AddSubscribe } from 'src/features/subscribe/add-subscribe';
+import { AddSubscribeUnauthorized } from 'src/features/subscribe/add-subscribe-unauthorized';
 
-const RemoveSubscribe = lazy(async () => {
-   const { RemoveSubscribe } = await import('src/features/subscribe/remove-subscribe');
-   return { default: RemoveSubscribe };
-});
-const AddSubscribe = lazy(async () => {
-   const { AddSubscribe } = await import('src/features/subscribe/add-subscribe');
-   return { default: AddSubscribe };
-});
-const AddSubscribeUnauthorized = lazy(async () => {
-   const { AddSubscribeUnauthorized } = await import(
-      'src/features/subscribe/add-subscribe-unauthorized'
-   );
-   return { default: AddSubscribeUnauthorized };
-});
-const RateVideo = lazy(async () => {
-   const { RateVideo } = await import('src/features/rate-video');
-   return { default: RateVideo };
-});
-const RateVideoUnauthorized = lazy(async () => {
-   const { RateVideoUnauthorized } = await import('src/features/rate-video-unauthorized');
-   return { default: RateVideoUnauthorized };
-});
+import { VideoDetails } from '../model/slice';
 
 import styles from './styles.module.scss';
-import { VideoDetails } from '../model/slice';
+import { ControlsSkeleton } from './controls-skeleton';
+import { RatingSkeleton } from './rating-skeleton';
 
 interface IProps {
    videoId: string;
    isAuth: boolean;
    subscribeStatus: string;
-   videoRating: 'like' | 'dislike' | 'none' | 'unspecified';
+   videoRating: rate;
    details: VideoDetails;
 }
 
@@ -54,14 +40,14 @@ export const VideoDescription: FC<IProps> = ({
          <div className={styles.description__main}>
             <Channel channelId={channelId} />
             <div className={styles.description__controls}>
-               <Suspense>
+               <Suspense fallback={<RatingSkeleton />}>
                   {isAuth ? (
                      <RateVideo videoId={videoId} likeCount={likeCount} rate={videoRating} />
                   ) : (
                      <RateVideoUnauthorized likeCount={likeCount} authButton={<Login />} />
                   )}
                </Suspense>
-               <Suspense>
+               <Suspense fallback={<ControlsSkeleton />}>
                   {isAuth ? (
                      subscribeStatus ? (
                         <RemoveSubscribe subscribeStatus={subscribeStatus} />

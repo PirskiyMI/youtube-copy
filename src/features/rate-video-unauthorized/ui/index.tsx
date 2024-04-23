@@ -1,13 +1,9 @@
-import { FC, ReactNode, lazy } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { usePopup } from 'src/shared/lib/hooks';
 import { getCount } from 'src/shared/lib/helpers';
-import { LikeCounter } from 'src/shared/ui/like-counter';
-
-const Popup = lazy(async () => {
-   const { Popup } = await import('src/shared/ui/popup');
-   return { default: Popup };
-});
+import { Popup } from 'src/shared/ui/popup';
+import { LikeCounter } from 'src/entities/video/video-rating';
 
 import styles from './styles.module.scss';
 

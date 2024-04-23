@@ -1,4 +1,4 @@
-import { Localized, Response, Thumbnails } from 'src/shared';
+import { Localized, Thumbnails } from "src/shared/lib/types";
 
 export interface ChannelResponse extends Response {
    items: Item[];

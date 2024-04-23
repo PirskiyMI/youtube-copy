@@ -11,6 +11,7 @@ export const getVideoRatingLoadingSelector = createSelector(
    [getSelector],
    (videoRating) => videoRating.loading,
 );
+
 export const getVideoRatingErrorSelector = createSelector(
    [getSelector],
    (videoRating) => videoRating.error,
