@@ -19,7 +19,14 @@ export const VideoPlayer: FC<IProps> = ({ src }) => {
 
    return (
       <div className={styles.video}>
-         <iframe src={src} allowFullScreen className={styles.video__iframe} allow="autoplay" />
+         <iframe
+            className={styles.video__iframe}
+            src={src}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+         />
       </div>
    );
 };
