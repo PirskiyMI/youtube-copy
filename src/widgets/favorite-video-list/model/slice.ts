@@ -41,10 +41,13 @@ const favoriteVideoSlice = createSlice({
             state.error = null;
             state.loading = true;
          })
-         .addCase(fetchFavoriteVideo.fulfilled, (state, { payload }) => {
-            state.loading = false;
-            state.data = payload;
-         })
+         .addCase(
+            fetchFavoriteVideo.fulfilled,
+            (state, { payload: { videoList, nextPageToken } }) => {
+               state.loading = false;
+               state.data = { videoList: [...state.data.videoList, ...videoList], nextPageToken };
+            },
+         )
          .addCase(fetchFavoriteVideo.rejected, (state, { payload }) => {
             state.loading = false;
             if (payload) state.error = payload;
